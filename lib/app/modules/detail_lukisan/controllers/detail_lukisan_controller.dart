@@ -2,9 +2,9 @@
 
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class DetailLukisanController extends GetxController {
   // ignore: todo
-  //TODO: Implement HomeController
+  //TODO: Implement DetailLukisanController
 
   final count = 0.obs;
   @override
