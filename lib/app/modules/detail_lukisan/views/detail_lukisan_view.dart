@@ -100,12 +100,17 @@ class DetailLukisanView extends GetView<DetailLukisanController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Warna"),
+                  Text("Pelukis"),
                   Container(
                     height: 30.sh,
                     color: Colors.amber,
                   ),
-                  Text("Pelukis"),
+                  Text("Tema"),
+                  Container(
+                    height: 30.sh,
+                    color: Colors.amber,
+                  ),
+                  Text("Warna"),
                   Container(
                     height: 30.sh,
                     color: Colors.amber,
@@ -115,7 +120,11 @@ class DetailLukisanView extends GetView<DetailLukisanController> {
                     height: 30.sh,
                     color: Colors.amber,
                   ),
-                  // Text("data"),
+                  Text("Ukuran"),
+                  Container(
+                    height: 30.sh,
+                    color: Colors.amber,
+                  ),
                 ],
               ),
             ),
