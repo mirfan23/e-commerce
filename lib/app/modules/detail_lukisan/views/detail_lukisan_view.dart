@@ -1,5 +1,7 @@
-import 'package:belanja/helper/helpers.dart';
-import 'package:belanja/helper/list.dart';
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:galeri_lukisan/helper/helpers.dart';
+import 'package:galeri_lukisan/helper/list.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -125,10 +127,21 @@ class DetailLukisanView extends GetView<DetailLukisanController> {
         padding: EdgeInsets.all(
           2.sh,
         ),
-        child: ElevatedButton(
-          onPressed: () {
-          },
-          child: Text("Hubungi Admin"),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              child: Text("Hubungi Admin"),
+            ),
+            SizedBox(
+              width: 2.sh,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text("Beli"),
+            ),
+          ],
         ),
       ),
     );

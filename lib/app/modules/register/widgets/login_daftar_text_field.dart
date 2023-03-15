@@ -1,4 +1,6 @@
-import 'package:belanja/helper/helpers.dart';
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

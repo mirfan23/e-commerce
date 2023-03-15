@@ -1,5 +1,7 @@
-import 'package:belanja/app/routes/app_pages.dart';
-import 'package:belanja/helper/helpers.dart';
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:galeri_lukisan/app/routes/app_pages.dart';
+import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

@@ -1,10 +1,8 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, depend_on_referenced_packages, unused_import
 
-import 'package:belanja/helper/helpers.dart';
-import 'package:flutter/foundation.dart';
+import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../routes/app_pages.dart';
 
 class LoginDaftarController extends GetxController {
   var verifCode = true.obs;

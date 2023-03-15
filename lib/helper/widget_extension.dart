@@ -38,7 +38,7 @@ extension WidgetExtension on Widget {
         style: ButtonStyle(
           elevation: MaterialStateProperty.all(elevation ?? 0),
           overlayColor: MaterialStateProperty.all(
-            Colors.grey.withOpacity(0.5),
+            Colors.grey.withOpacity(0.2),
           ),
           backgroundColor:
               MaterialStateProperty.all(backgroundColor ?? Colors.white),

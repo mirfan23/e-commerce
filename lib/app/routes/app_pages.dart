@@ -1,15 +1,15 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, depend_on_referenced_packages
 
 import 'package:get/get.dart';
 
-import 'package:belanja/app/modules/detail_lukisan/bindings/detail_lukisan_binding.dart';
-import 'package:belanja/app/modules/detail_lukisan/views/detail_lukisan_view.dart';
-import 'package:belanja/app/modules/home/bindings/home_binding.dart';
-import 'package:belanja/app/modules/home/views/home_view.dart';
-import 'package:belanja/app/modules/login/bindings/login_binding.dart';
-import 'package:belanja/app/modules/login/views/login_view.dart';
-import 'package:belanja/app/modules/register/bindings/register_binding.dart';
-import 'package:belanja/app/modules/register/views/register_view.dart';
+import 'package:galeri_lukisan/app/modules/detail_lukisan/bindings/detail_lukisan_binding.dart';
+import 'package:galeri_lukisan/app/modules/detail_lukisan/views/detail_lukisan_view.dart';
+import 'package:galeri_lukisan/app/modules/home/bindings/home_binding.dart';
+import 'package:galeri_lukisan/app/modules/home/views/home_view.dart';
+import 'package:galeri_lukisan/app/modules/login/bindings/login_binding.dart';
+import 'package:galeri_lukisan/app/modules/login/views/login_view.dart';
+import 'package:galeri_lukisan/app/modules/register/bindings/register_binding.dart';
+import 'package:galeri_lukisan/app/modules/register/views/register_view.dart';
 
 part 'app_routes.dart';
 

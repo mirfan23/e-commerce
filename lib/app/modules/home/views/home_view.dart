@@ -1,4 +1,6 @@
-import 'package:belanja/helper/helpers.dart';
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
@@ -19,16 +21,36 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          splashRadius: 3.sh,
-          icon: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            size: 3.sh,
-            color: Colors.black,
+        actions: [
+          IconButton(
+            splashRadius: 3.sh,
+            icon: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 3.sh,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Get.toNamed(AppPages.REGISTER);
+            },
           ),
-          onPressed: () {
-            Get.toNamed(AppPages.REGISTER);
-          },
+        ],
+        // leading: IconButton(
+        //   splashRadius: 3.sh,
+        //   icon: Icon(
+        //     Icons.menu,
+        //     size: 3.sh,
+        //     color: Colors.black,
+        //   ),
+        //   onPressed: () {
+        //     Get.to(Drawer());
+        //   },
+        // ),
+      ),
+      drawer: Drawer(
+        // backgroundColor: Colors.black,
+        child: ListTile(
+          leading: Icon(Icons.logout),
+          title: Text("Log Out"),
         ),
       ),
       body: SingleChildScrollView(
