@@ -30,24 +30,17 @@ class HomeView extends GetView<HomeController> {
             Get.toNamed(AppPages.REGISTER);
           },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.favorite_rounded,
-              size: 4.sh,
-              color: Colors.red,
-            ),
-            onPressed: null,
-          ),
-          SizedBox(
-            width: 2.sh,
-          )
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             SearchBar(),
+            Divider(
+              thickness: 0.4,
+              indent: 2.sh,
+              endIndent: 2.sh,
+              color: Colors.grey.withOpacity(0.5),
+            ),
             SizedBox(
               height: 2.sh,
             ),

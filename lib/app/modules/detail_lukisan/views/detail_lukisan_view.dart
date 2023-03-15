@@ -32,19 +32,6 @@ class DetailLukisanView extends GetView<DetailLukisanController> {
           },
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.favorite_rounded,
-              size: 4.sh,
-              color: Colors.red,
-            ),
-            onPressed: null,
-          ),
-          SizedBox(
-            width: 2.sh,
-          )
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -130,8 +117,18 @@ class DetailLukisanView extends GetView<DetailLukisanController> {
             ),
             SizedBox(
               height: 2.sh,
-            )
+            ),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(
+          2.sh,
+        ),
+        child: ElevatedButton(
+          onPressed: () {
+          },
+          child: Text("Hubungi Admin"),
         ),
       ),
     );
