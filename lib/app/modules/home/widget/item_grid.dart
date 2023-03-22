@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:galeri_lukisan/app/data/models/product_model.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:galeri_lukisan/helper/widget_extension.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,12 @@ import '../../../routes/app_pages.dart';
 class ItemGrid extends StatelessWidget {
   const ItemGrid({
     Key? key,
+    required this.model,
+    required this.index,
   }) : super(key: key);
+
+  final ProductModel model;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +31,19 @@ class ItemGrid extends StatelessWidget {
           crossAxisSpacing: 2.sh,
           mainAxisSpacing: 2.sh,
         ),
-        itemCount: MyList.film.length,
+        itemCount: model.data.length,
         itemBuilder: ((__, index) {
           return Column(
             children: [
               Image(
-                image: MyList.film[index],
+                image: model.data[index].attributes.images as ImageProvider,
                 width: 19.sw,
               ),
               SizedBox(
                 height: 1.sh,
               ),
               Text(
-                MyList.NamaFilm[index],
+                model.data[index].attributes.title,
                 style: TextStyle(fontSize: 12, color: Colors.black),
                 overflow: TextOverflow.ellipsis,
               )

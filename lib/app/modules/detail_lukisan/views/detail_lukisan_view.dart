@@ -138,7 +138,9 @@ class DetailLukisanView extends GetView<DetailLukisanController> {
               width: 2.sh,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(AppPages.ORDER);
+              },
               child: Text("Beli"),
             ),
           ],

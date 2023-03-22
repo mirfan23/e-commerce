@@ -10,6 +10,7 @@ abstract class Routes {
   static const DETAIL_LUKISAN = _Paths.DETAIL_LUKISAN;
   static const REGISTER = _Paths.REGISTER;
   static const LOGIN = _Paths.LOGIN;
+  static const ORDER = _Paths.ORDER;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const DETAIL_LUKISAN = '/detail-lukisan';
   static const REGISTER = '/register';
   static const LOGIN = '/login';
+  static const ORDER = '/order';
 }
