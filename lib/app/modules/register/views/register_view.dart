@@ -15,6 +15,7 @@ import '../widgets/login_or_daftar.dart';
 
 class RegisterView extends GetView<RegisterController> {
   final loginDaftarC = Get.put(LoginDaftarController());
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,57 +35,64 @@ class RegisterView extends GetView<RegisterController> {
                   const SizedBox(
                     height: 20,
                   ),
-                  LoginDaftarTextView(
-                    title: "Nama",
-                  ),
-                  LoginDaftarTextField(
-                    title: "Nama lengkap kamu",
-                    index: 9,
-                    filltext: loginDaftarC.usernameRegTF,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  LoginDaftarTextView(
-                    title: "Email",
-                  ),
-                  LoginDaftarTextField(
-                    title: "Masukkan emailmu",
-                    index: 9,
-                    filltext: loginDaftarC.emailRegTF,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  LoginDaftarTextView(
-                    title: "Nomor Ponsel",
-                  ),
-                  LoginDaftarTextField(
-                    title: "Ex. 8213456789",
-                    index: 9,
-                    filltext: loginDaftarC.noHPRegTF,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  LoginDaftarTextView(
-                    title: "Buat Kata Sandi",
-                  ),
-                  LoginDaftarTextField(
-                    title: "Masukkan kata sandi",
-                    index: 1,
-                    filltext: loginDaftarC.passwordRegTF,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  LoginDaftarTextView(
-                    title: "Buat Kata Sandi",
-                  ),
-                  LoginDaftarTextField(
-                    title: "Masukkan kata sandi",
-                    index: 2,
-                    filltext: loginDaftarC.repasswordRegTF,
+                  Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        LoginDaftarTextView(
+                          title: "Nama",
+                        ),
+                        LoginDaftarTextField(
+                          title: "Nama lengkap kamu",
+                          index: 9,
+                          filltext: loginDaftarC.usernameRegTF,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        LoginDaftarTextView(
+                          title: "Email",
+                        ),
+                        LoginDaftarTextField(
+                          title: "Masukkan emailmu",
+                          index: 9,
+                          filltext: loginDaftarC.emailRegTF,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        // LoginDaftarTextView(
+                        //   title: "Nomor Ponsel",
+                        // ),
+                        // LoginDaftarTextField(
+                        //   title: "Ex. 8213456789",
+                        //   index: 9,
+                        //   filltext: loginDaftarC.noHPRegTF,
+                        // ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        LoginDaftarTextView(
+                          title: "Buat Kata Sandi",
+                        ),
+                        LoginDaftarTextField(
+                          title: "Masukkan kata sandi",
+                          index: 1,
+                          filltext: loginDaftarC.passwordRegTF,
+                        ),
+                        // const SizedBox(
+                        //   height: 20,
+                        // ),
+                        // LoginDaftarTextView(
+                        //   title: "Buat Kata Sandi",
+                        // ),
+                        // LoginDaftarTextField(
+                        //   title: "Masukkan kata sandi",
+                        //   index: 2,
+                        //   filltext: loginDaftarC.repasswordRegTF,
+                        // ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -103,7 +111,10 @@ class RegisterView extends GetView<RegisterController> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Get.toNamed(AppPages.LOGIN);
+                      if (formKey.currentState!.validate()) {
+                        loginDaftarC.validateUserEmail();
+                        // Get.toNamed(AppPages.LOGIN);
+                      }
                     },
                     child: Container(
                       alignment: Alignment.center,

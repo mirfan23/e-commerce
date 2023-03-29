@@ -7,10 +7,14 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../data/models/product_model.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/detail_lukisan_controller.dart';
 
 class DetailLukisanView extends GetView<DetailLukisanController> {
+  final DetailLukisanController detailController =
+      Get.find<DetailLukisanController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,92 +39,126 @@ class DetailLukisanView extends GetView<DetailLukisanController> {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 2.sh,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 10,
-                left: 50,
-                right: 50,
+      body: Obx(
+        () => SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 2.sh,
               ),
-              child: Stack(
-                children: [
-                  Container(
-                    // alignment: Alignment.center,
-                    // color: Colors.amber,
-                    height: 50.sh,
-                    width: 75.sw,
-                    child: CarouselSlider.builder(
-                      itemCount: MyList.film.length,
-                      itemBuilder: (_, index, ___) {
-                        return Container(
-                          child: Image(
-                            image: MyList.film[index],
-                          ),
-                        );
-                      },
-                      options: CarouselOptions(
-                        height: 300,
-                        viewportFraction: 1,
-                        enableInfiniteScroll: false,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  left: 50,
+                  right: 50,
+                ),
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 50.sh,
+                      width: 75.sw,
+                      child: CarouselSlider.builder(
+                        itemCount: MyList.film.length,
+                        itemBuilder: (_, index, ___) {
+                          Datum detail = detailController.products[index];
+                          return Container(
+                            child: Image(
+                              image: MyList.film[index],
+                            ),
+                          );
+                        },
+                        options: CarouselOptions(
+                          height: 300,
+                          viewportFraction: 1,
+                          enableInfiniteScroll: false,
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    height: 50.sh,
-                    // color: Colors.black,
-                    alignment: Alignment.bottomLeft,
-                    child: Text("1/6"),
-                  )
-                ],
+                    Container(
+                      height: 50.sh,
+                      alignment: Alignment.bottomLeft,
+                      child: Text("1/6"),
+                    )
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 5.sh,
-            ),
-            Container(
-              // height: 50.sh,
-              width: 50.sh,
-              // color: Colors.blue,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Pelukis"),
-                  Container(
-                    height: 30.sh,
-                    color: Colors.amber,
-                  ),
-                  Text("Tema"),
-                  Container(
-                    height: 30.sh,
-                    color: Colors.amber,
-                  ),
-                  Text("Warna"),
-                  Container(
-                    height: 30.sh,
-                    color: Colors.amber,
-                  ),
-                  Text("Deskripsi"),
-                  Container(
-                    height: 30.sh,
-                    color: Colors.amber,
-                  ),
-                  Text("Ukuran"),
-                  Container(
-                    height: 30.sh,
-                    color: Colors.amber,
-                  ),
-                ],
+              SizedBox(
+                height: 5.sh,
               ),
-            ),
-            SizedBox(
-              height: 2.sh,
-            ),
-          ],
+              Container(
+                width: 50.sh,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Pelukis"),
+                    Container(
+                        height: 30.sh,
+                        // color: Colors.amber,
+                        child: Text(
+                            detailController.products.first.attributes.pelukis)
+                        // ListView.builder(
+                        //   itemCount: controller.products.length,
+                        //   itemBuilder: (context, index) {
+                        //     return Text(
+                        //         controller.products[index].attributes.pelukis);
+                        //   },
+                        // ),
+                        ),
+                    Text("Tema"),
+                    Container(
+                        height: 30.sh,
+                        // color: Colors.amber,
+                        child: Text(detailController
+                            .products.first.attributes.categories)
+                        // ListView.builder(
+                        //   itemCount: controller.products.length,
+                        //   itemBuilder: (context, index) {
+                        //     return Text(
+                        //         controller.products[index].attributes.categories);
+                        //   },
+                        // ),
+                        ),
+                    Text("Warna"),
+                    Container(
+                        height: 30.sh,
+                        // color: Colors.amber,
+                        child: Text(
+                            detailController.products.first.attributes.colors)
+                        // ListView.builder(
+                        //   itemCount: controller.products.length,
+                        //   itemBuilder: (context, index) {
+                        //     return Text(
+                        //         controller.products[index].attributes.colors);
+                        //   },
+                        // ),
+                        ),
+                    Text("Deskripsi"),
+                    Container(
+                        height: 30.sh,
+                        // color: Colors.amber,
+                        child: Text(detailController
+                            .products.first.attributes.description)
+                        // ListView.builder(
+                        //   itemCount: controller.products.length,
+                        //   itemBuilder: (context, index) {
+                        //     return Text(controller
+                        //         .products[index].attributes.description);
+                        //   },
+                        // ),
+                        ),
+                    Text("Ukuran"),
+                    Container(
+                      height: 30.sh,
+                      color: Colors.amber,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 2.sh,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(

@@ -1,19 +1,16 @@
-// ignore_for_file: depend_on_referenced_packages
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:galeri_lukisan/helper/widget_extension.dart';
 import 'package:get/get.dart';
+import '../../../../helper/const.dart';
 import '../../../data/models/product_model.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
-import '../widget/item_grid.dart';
 import '../widget/search_bar.dart';
 
 class HomeView extends GetView<HomeController> {
-  late final ProductModel model;
-  late final int index;
-
-  final HomeController homeController = Get.put(HomeController());
+  final HomeController homeController = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -67,58 +64,52 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 2.sh,
             ),
-
-            Obx(() => homeController.isLoading.value
-                ? CircularProgressIndicator()
-                : Container()),
-            Obx(() => homeController.errorMessage.value != ""
-                ? Text(homeController.errorMessage.value)
-                : Container()),
-            Obx(() => ItemGrid(model: model, index: index)),
-
-            // controller.obx(
-            //   (data) => ItemGrid(
-            //     index: index,
-            //     model: model,
-            //   ),
-            // )
-            // Container(
-            //   padding: EdgeInsets.only(right: 3.sh, left: 3.sh),
-            //   child: GridView.builder(
-            //     shrinkWrap: true,
-            //     physics: ScrollPhysics(),
-            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //       crossAxisCount: 2,
-            //       crossAxisSpacing: 2.sh,
-            //       mainAxisSpacing: 2.sh,
-            //     ),
-            //     itemCount: model.data.length,
-            //     itemBuilder: ((__, index) {
-            //       return Column(
-            //         children: [
-            //           Image(
-            //             image: model.data[index].attributes.images
-            //                 as ImageProvider,
-            //             width: 19.sw,
-            //           ),
-            //           SizedBox(
-            //             height: 1.sh,
-            //           ),
-            //           Text(
-            //             model.data[index].attributes.title,
-            //             style: TextStyle(fontSize: 12, color: Colors.black),
-            //             overflow: TextOverflow.ellipsis,
-            //           )
-            //         ],
-            //       ).margin(all: 2.sh).button(
-            //             elevation: 3,
-            //             onPressed: () {
-            //               Get.toNamed(AppPages.DETAIL);
-            //             },
-            //           );
-            //     }),
-            //   ),
-            // )
+            Obx(
+              () => Container(
+                padding: EdgeInsets.only(right: 3.sh, left: 3.sh),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 2.sh,
+                    mainAxisSpacing: 2.sh,
+                  ),
+                  itemCount: controller.products.length,
+                  itemBuilder: ((context, index) {
+                    Datum product = homeController.products[index];
+                    return Column(
+                      children: [
+                        // CachedNetworkImage(
+                        //   imageUrl:
+                        //       // model.data[index].attributes.thumbnails.data.attributes.url,
+                        //       // homeController.imageUrl.value,
+                        //       '${'$baseUrl/products?populate=thumbnails'}${product.attributes.thumbnails.data.attributes.formats.thumbnail.url}',
+                        //   width: 19.sw,
+                        //   errorWidget: (context, url, error) =>
+                        //       Text('Error: $error'),
+                        //   placeholder: (context, url) =>
+                        //       CircularProgressIndicator(),
+                        // ),
+                        SizedBox(
+                          height: 1.sh,
+                        ),
+                        Text(
+                          product.attributes.title,
+                          style: TextStyle(fontSize: 12, color: Colors.black),
+                          overflow: TextOverflow.ellipsis,
+                        )
+                      ],
+                    ).margin(all: 2.sh).button(
+                          elevation: 3,
+                          onPressed: () {
+                            Get.toNamed(AppPages.DETAIL);
+                          },
+                        );
+                  }),
+                ),
+              ),
+            ),
           ],
         ),
       ),

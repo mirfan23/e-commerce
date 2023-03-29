@@ -1,22 +1,21 @@
 // ignore_for_file: avoid_print, depend_on_referenced_packages, unused_import
 
+import 'dart:convert';
+
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:galeri_lukisan/app/data/providers/api_connection.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
+import '../../../data/models/user_Model.dart';
 
 class LoginDaftarController extends GetxController {
   var verifCode = true.obs;
-
-  // var getService = Get.put(StorageService());
-
-  // LoginDaftarProvider provider = Get.put(LoginDaftarProvider());
-
-  // var loginProvider = Get.put(LoginProvider());
   var isLogin = false;
 
   String formatNumberPhone = "";
-
-  // ignore: non_constant_identifier_names
 
   late TextEditingController usernameLoginTF;
   late TextEditingController passwordLoginTF;
@@ -58,10 +57,8 @@ class LoginDaftarController extends GetxController {
 
   @override
   void onInit() {
-    // print(readToken());
     initTextRegister();
     initTextLogin();
-    // getService.remove(GetStorageKey.userToken);
     super.onInit();
   }
 
@@ -71,14 +68,6 @@ class LoginDaftarController extends GetxController {
   }
 
   void errorEnabled(String value, int index, String message) {
-    // if (&& value.isNotEmpty && value.contains('@')) {
-    //   enableError[index] = true;
-    //   messageError[index] = message;
-    //   update();
-    // } else {
-    //   enableError[index] = false;
-    //   update();
-    // }
     enableError[index] = true;
     messageError.insert(index, message);
     update();
@@ -106,52 +95,6 @@ class LoginDaftarController extends GetxController {
     update();
   }
 
-  // void loginFail(String value) {
-  //   Get.dialog(
-  //     Align(
-  //       alignment: Alignment.center,
-  //       child: Wrap(
-  //         children: [
-  //           SizedBox(
-  //             width: 50.sw,
-  //             height: 50.sw,
-  //             child: Material(
-  //               child: Container(
-  //                 height: 50.sw,
-  //                 width: 50.sw,
-  //                 decoration: const BoxDecoration(
-  //                   color: Colors.white,
-  //                 ),
-  //                 child: Column(
-  //                   mainAxisAlignment: MainAxisAlignment.center,
-  //                   crossAxisAlignment: CrossAxisAlignment.center,
-  //                   children: [
-  //                     Text(
-  //                       value,
-  //                       textAlign: TextAlign.center,
-  //                       style: const TextStyle(fontSize: 20),
-  //                     ),
-  //                     const SizedBox(
-  //                       height: 40,
-  //                     ),
-  //                     PWMPButton(
-  //                       title: "Tutup",
-  //                       color: CustomColor.greenBackground,
-  //                       onPressed: () {
-  //                         Get.back();
-  //                       },
-  //                     )
-  //                   ],
-  //                 ),
-  //               ),
-  //             ),
-  //           ).borderRadius(all: 20)
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
   void loading() {
     Get.dialog(
       Wrap(
@@ -178,128 +121,57 @@ class LoginDaftarController extends GetxController {
     );
   }
 
-  void pasteVerificationText(String temp, int index) {
-    switch (index) {
-      case 0:
-        tFVerificationPaste[0].text = temp[0];
-        tFVerificationPaste[1].text = temp[1];
-        tFVerificationPaste[2].text = temp[2];
-        tFVerificationPaste[3].text = temp[3];
-        break;
-      case 1:
-        tFVerificationPaste[1].text = temp[0];
-        tFVerificationPaste[2].text = temp[1];
-        tFVerificationPaste[3].text = temp[2];
-        break;
-      case 2:
-        tFVerificationPaste[2].text = temp[0];
-        tFVerificationPaste[3].text = temp[1];
-        break;
-      case 3:
-        tFVerificationPaste[3].text = temp[0];
-        break;
-      default:
-    }
+  validateUserEmail() async {
+    try {
+      var res = await http.post(
+          Uri.parse(
+            API.validateEmail,
+          ),
+          body: {
+            'user_email': emailRegTF.text.trim(),
+          });
+      if (res.statusCode == 200) {
+        //connection success
+        var resBodyOfValidateEmail = jsonDecode(res.body);
+
+        if (resBodyOfValidateEmail['emailFound'] == true) {
+          Fluttertoast.showToast(msg: "Email sudah dipakai oleh orang lain");
+        } else {
+          registerAndSaveUserRecord();
+        }
+      }
+    } catch (e) {}
   }
 
-  // void saveToGetStorage(String data, List<String> value) {
-  //   getService.write(GetStorageKey.userToken, data);
-  //   getService.write(GetStorageKey.userData, value);
-  //   // getService.write(GetStorageKey.isLogin, true);
-  // }
+  registerAndSaveUserRecord() async {
+    User userModel = User(
+      1,
+      usernameRegTF.text.trim(),
+      emailRegTF.text.trim(),
+      passwordRegTF.text.trim(),
+    );
 
-  // void login() {
-  //   Get.dialog(Align(
-  //     alignment: Alignment.center,
-  //     child: Wrap(
-  //       children: [
-  //         const CircularProgressIndicator()
-  //             .margin(all: 4.sh)
-  //             .backgroundColor(color: Colors.white)
-  //             .borderRadius(all: 14),
-  //       ],
-  //     ),
-  //   ));
-  //   try {
-  //     loginProvider
-  //         .provider(usernameLoginTF.text, passwordLoginTF.text)
-  //         .then((value) {
-  //       Get.back();
-  //       print('test');
-  //       // if (value.message == "Login berhasil") {
-  //       // print(value.data!.token!.token);
-  //       // getService.write(
-  //       //     GetStorageKey.userToken, value.data!.token!.token.toString());
+    try {
+      var res = await http.post(
+        Uri.parse(API.signUp),
+        body: userModel.toJson(),
+      );
 
-  //       // getService.write(GetStorageKey.userData, value.data);
+      if (res.statusCode == 200) {
+        var responBodySignUp = jsonDecode(res.body);
+        if (responBodySignUp['success']) {
+          Fluttertoast.showToast(msg: "Register Berhasil");
 
-  //       List<String> userData = [];
-  //       userData.add(value.data!.realName!);
-  //       userData.add(value.data!.namaGroup!);
-
-  //       saveToGetStorage(
-  //         value.data!.token!.token.toString(),
-  //         userData,
-  //       );
-  //       isLogin = true;
-  //       update();
-  //       // print(readUserData());
-
-  //       loading();
-  //       Future.delayed(const Duration(seconds: 2), () {
-  //         Get.back();
-  //         Get.toNamed(AppPages.INITIAL);
-  //         // print(readUserData()['id_user']);
-  //         // print(readToken());
-  //         // print("Timeout");
-  //       });
-  //       // Get.back();
-  //       // Get.toNamed(AppPages.INITIAL);
-  //       // print('test');
-  //       //   errorEnabled("usernameLoginTF.text", 0);
-  //       // } else {
-  //       //   errorEnabled(passwordLoginTF.text, 1);
-  //       // }
-  //     }).onError((error, stackTrace) {
-  //       print(error);
-  //       Get.back();
-  //       Get.dialog(
-  //         DialogCustom.error(
-  //           message: error.toString(),
-  //           buttonText: "Coba Lagi",
-  //           onPressed: () {
-  //             Get.back();
-  //           },
-  //         ),
-  //       );
-  //       // loginFail(error.toString());
-  //       // errorEnabled(passwordLoginTF.text, 1, error.toString());
-  //     });
-  //   } catch (e) {
-  //     print("text");
-  //     if (kDebugMode) {
-  //       print("gagal");
-  //     }
-  //   }
-  // }
-
-  void register() {
-    // try {
-    //   provider
-    //       .registerProvider(
-    //         "namaKelompok",
-    //         emailRegTF.text,
-    //         "idSkema",
-    //         "idRefKorwil",
-    //         formatNumberPhone + noHPRegTF.text,
-    //         passwordLoginTF.text,
-    //         repasswordRegTF.text,
-    //       )
-    //       .then((value) => null);
-    // } catch (e) {
-    //   if (kDebugMode) {
-    //     print("gagal");
-    //   }
-    // }
+          usernameRegTF.clear();
+          emailRegTF.clear();
+          passwordRegTF.clear();
+        } else {
+          Fluttertoast.showToast(msg: "Terjadi Error, Silahkan Coba Lagi");
+        }
+      }
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
+    }
   }
 }

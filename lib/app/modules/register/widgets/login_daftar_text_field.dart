@@ -34,26 +34,12 @@ class LoginDaftarTextField extends StatelessWidget {
         builder: (controller) {
           return TextFormField(
               enableSuggestions: suggestion ?? false,
-              // onChanged: ((value) {
-              //   if (withValidate) {
-              //     // controller.errorEnabled(value, indexValidate!);
-              //     controller.enableError[0] = false;
-              //     controller.update();
-              //   }
-              // }),
               controller: filltext,
+              validator: ((value) =>
+                  value == "" ? "Tolong Diisi dengan Benar" : null),
               textAlignVertical: TextAlignVertical.center,
-              // style: GoogleFonts.poppins(
-              //   fontSize: context.isTablet ? 20 : 15,
-              // ),
               obscureText: index == 9 ? false : controller.tfObscure[index],
               decoration: InputDecoration(
-
-                  // errorText: withValidate
-                  //     ? (controller.enableError[0]
-                  //         ? controller.messageError[0]
-                  //         : null)
-                  //     : null,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(width: 1, color: Colors.grey),
                     borderRadius: BorderRadius.circular(7),
@@ -88,9 +74,6 @@ class LoginDaftarTextField extends StatelessWidget {
                                   : Icons.remove_red_eye,
                               color: Colors.grey),
                           onPressed: () {
-                            // Update the state i.e. toogle the state of passwordVisible variable
-                            // textObscure != textObscure;
-                            // controller.update();
                             controller.updateTextField(index);
                           },
                         )
@@ -109,21 +92,6 @@ class LoginDaftarTextField extends StatelessWidget {
                               // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
                               initialSelection: 'ID',
                               favorite: const ['+62', 'ID'],
-                              // optional. Shows only country name and flag
-                              // textStyle: CustomFonts.poppinsRegular14.copyWith(
-                              //   fontSize: context.isTablet ? 20 : 14,
-                              //   color: Colors.black,
-                              // ),
-                              // dialogTextStyle:
-                              //     CustomFonts.poppinsRegular14.copyWith(
-                              //   fontSize: context.isTablet ? 20 : 14,
-                              //   color: Colors.black,
-                              // ),
-                              // searchStyle:
-                              //     CustomFonts.poppinsRegular14.copyWith(
-                              //   fontSize: context.isTablet ? 20 : 14,
-                              //   color: Colors.black,
-                              // ),
                               dialogSize: Size(
                                 90.sw,
                                 80.sh,

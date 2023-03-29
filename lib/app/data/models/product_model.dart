@@ -15,11 +15,11 @@ class ProductModel {
     required this.meta,
   });
 
-  List<Lukisan> data;
+  List<Datum> data;
   Meta meta;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-        data: List<Lukisan>.from(json["data"].map((x) => Lukisan.fromJson(x))),
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
         meta: Meta.fromJson(json["meta"]),
       );
 
@@ -29,8 +29,8 @@ class ProductModel {
       };
 }
 
-class Lukisan {
-  Lukisan({
+class Datum {
+  Datum({
     required this.id,
     required this.attributes,
   });
@@ -38,7 +38,7 @@ class Lukisan {
   int id;
   DatumAttributes attributes;
 
-  factory Lukisan.fromJson(Map<String, dynamic> json) => Lukisan(
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         attributes: DatumAttributes.fromJson(json["attributes"]),
       );
@@ -58,9 +58,9 @@ class DatumAttributes {
     required this.updatedAt,
     required this.publishedAt,
     required this.pelukis,
-    this.colors,
-    this.categories,
-    required this.images,
+    required this.colors,
+    required this.categories,
+    required this.thumbnails,
   });
 
   String title;
@@ -70,9 +70,9 @@ class DatumAttributes {
   DateTime updatedAt;
   DateTime publishedAt;
   String pelukis;
-  dynamic colors;
-  dynamic categories;
-  Images images;
+  String colors;
+  String categories;
+  Thumbnails thumbnails;
 
   factory DatumAttributes.fromJson(Map<String, dynamic> json) =>
       DatumAttributes(
@@ -85,7 +85,7 @@ class DatumAttributes {
         pelukis: json["pelukis"],
         colors: json["colors"],
         categories: json["categories"],
-        images: Images.fromJson(json["images"]),
+        thumbnails: Thumbnails.fromJson(json["thumbnails"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -98,18 +98,18 @@ class DatumAttributes {
         "pelukis": pelukis,
         "colors": colors,
         "categories": categories,
-        "images": images.toJson(),
+        "thumbnails": thumbnails.toJson(),
       };
 }
 
-class Images {
-  Images({
+class Thumbnails {
+  Thumbnails({
     required this.data,
   });
 
   Data data;
 
-  factory Images.fromJson(Map<String, dynamic> json) => Images(
+  factory Thumbnails.fromJson(Map<String, dynamic> json) => Thumbnails(
         data: Data.fromJson(json["data"]),
       );
 
@@ -165,8 +165,8 @@ class DataAttributes {
   int height;
   Formats formats;
   String hash;
-  Ext ext;
-  Mime mime;
+  String ext;
+  String mime;
   double size;
   String url;
   dynamic previewUrl;
@@ -183,8 +183,8 @@ class DataAttributes {
         height: json["height"],
         formats: Formats.fromJson(json["formats"]),
         hash: json["hash"],
-        ext: extValues.map[json["ext"]]!,
-        mime: mimeValues.map[json["mime"]]!,
+        ext: json["ext"],
+        mime: json["mime"],
         size: json["size"]?.toDouble(),
         url: json["url"],
         previewUrl: json["previewUrl"],
@@ -202,8 +202,8 @@ class DataAttributes {
         "height": height,
         "formats": formats.toJson(),
         "hash": hash,
-        "ext": extValues.reverse[ext],
-        "mime": mimeValues.reverse[mime],
+        "ext": ext,
+        "mime": mime,
         "size": size,
         "url": url,
         "previewUrl": previewUrl,
@@ -214,36 +214,32 @@ class DataAttributes {
       };
 }
 
-enum Ext { JPG, JFIF }
-
-final extValues = EnumValues({".jfif": Ext.JFIF, ".jpg": Ext.JPG});
-
 class Formats {
   Formats({
     required this.thumbnail,
-    this.large,
     this.small,
     this.medium,
+    this.large,
   });
 
   Thumbnail thumbnail;
-  Thumbnail? large;
   Thumbnail? small;
   Thumbnail? medium;
+  Thumbnail? large;
 
   factory Formats.fromJson(Map<String, dynamic> json) => Formats(
         thumbnail: Thumbnail.fromJson(json["thumbnail"]),
-        large: json["large"] == null ? null : Thumbnail.fromJson(json["large"]),
         small: json["small"] == null ? null : Thumbnail.fromJson(json["small"]),
         medium:
             json["medium"] == null ? null : Thumbnail.fromJson(json["medium"]),
+        large: json["large"] == null ? null : Thumbnail.fromJson(json["large"]),
       );
 
   Map<String, dynamic> toJson() => {
         "thumbnail": thumbnail.toJson(),
-        "large": large?.toJson(),
         "small": small?.toJson(),
         "medium": medium?.toJson(),
+        "large": large?.toJson(),
       };
 }
 
@@ -262,8 +258,8 @@ class Thumbnail {
 
   String name;
   String hash;
-  Ext ext;
-  Mime mime;
+  String ext;
+  String mime;
   dynamic path;
   int width;
   int height;
@@ -273,8 +269,8 @@ class Thumbnail {
   factory Thumbnail.fromJson(Map<String, dynamic> json) => Thumbnail(
         name: json["name"],
         hash: json["hash"],
-        ext: extValues.map[json["ext"]]!,
-        mime: mimeValues.map[json["mime"]]!,
+        ext: json["ext"],
+        mime: json["mime"],
         path: json["path"],
         width: json["width"],
         height: json["height"],
@@ -285,8 +281,8 @@ class Thumbnail {
   Map<String, dynamic> toJson() => {
         "name": name,
         "hash": hash,
-        "ext": extValues.reverse[ext],
-        "mime": mimeValues.reverse[mime],
+        "ext": ext,
+        "mime": mime,
         "path": path,
         "width": width,
         "height": height,
@@ -294,10 +290,6 @@ class Thumbnail {
         "url": url,
       };
 }
-
-enum Mime { IMAGE_JPEG }
-
-final mimeValues = EnumValues({"image/jpeg": Mime.IMAGE_JPEG});
 
 class Meta {
   Meta({
@@ -341,16 +333,4 @@ class Pagination {
         "pageCount": pageCount,
         "total": total,
       };
-}
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

@@ -35,10 +35,10 @@ class ItemGrid extends StatelessWidget {
         itemBuilder: ((__, index) {
           return Column(
             children: [
-              Image(
-                image: model.data[index].attributes.images as ImageProvider,
-                width: 19.sw,
-              ),
+              // Image(
+              //   image: model.data[index].attributes.images as ImageProvider,
+              //   width: 19.sw,
+              // ),
               SizedBox(
                 height: 1.sh,
               ),
