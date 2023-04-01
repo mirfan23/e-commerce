@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, file_names
+
 class User {
   int user_id;
   String user_name;
@@ -10,6 +12,13 @@ class User {
     this.user_email,
     this.user_password,
   );
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        int.parse(json["user_id"]),
+        json["user_name"],
+        json["user_email"],
+        json["user_password"],
+      );
 
   Map<String, dynamic> toJson() => {
         'user_id': user_id.toString(),

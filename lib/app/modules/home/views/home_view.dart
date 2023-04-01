@@ -1,4 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:galeri_lukisan/app/modules/home/views/order_fragment.dart';
+import 'package:galeri_lukisan/app/modules/home/views/profile_fragment.dart';
+import 'package:galeri_lukisan/app/modules/order/views/order_view.dart';
+import 'package:galeri_lukisan/helper/current_user.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:galeri_lukisan/helper/widget_extension.dart';
@@ -11,6 +16,7 @@ import '../widget/search_bar.dart';
 
 class HomeView extends GetView<HomeController> {
   final HomeController homeController = Get.find<HomeController>();
+  // CurrenUser rememberCurrentUser = Get.put(CurrenUser());
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +86,12 @@ class HomeView extends GetView<HomeController> {
                     Datum product = homeController.products[index];
                     return Column(
                       children: [
+                        Image(
+                          image: AssetImage(
+                            'assets/images/monalisa.jpg',
+                          ),
+                          width: 19.sw,
+                        ),
                         // CachedNetworkImage(
                         //   imageUrl:
                         //       // model.data[index].attributes.thumbnails.data.attributes.url,

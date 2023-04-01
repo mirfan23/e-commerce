@@ -1,6 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:galeri_lukisan/app/routes/app_pages.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -61,14 +60,6 @@ class RegisterView extends GetView<RegisterController> {
                         const SizedBox(
                           height: 20,
                         ),
-                        // LoginDaftarTextView(
-                        //   title: "Nomor Ponsel",
-                        // ),
-                        // LoginDaftarTextField(
-                        //   title: "Ex. 8213456789",
-                        //   index: 9,
-                        //   filltext: loginDaftarC.noHPRegTF,
-                        // ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -80,17 +71,6 @@ class RegisterView extends GetView<RegisterController> {
                           index: 1,
                           filltext: loginDaftarC.passwordRegTF,
                         ),
-                        // const SizedBox(
-                        //   height: 20,
-                        // ),
-                        // LoginDaftarTextView(
-                        //   title: "Buat Kata Sandi",
-                        // ),
-                        // LoginDaftarTextField(
-                        //   title: "Masukkan kata sandi",
-                        //   index: 2,
-                        //   filltext: loginDaftarC.repasswordRegTF,
-                        // ),
                       ],
                     ),
                   ),

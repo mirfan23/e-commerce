@@ -1,6 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
-
-import 'package:galeri_lukisan/app/routes/app_pages.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +12,7 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   final loginDaftarC = Get.put(LoginDaftarController());
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class LoginView extends GetView<LoginController> {
                   LoginDaftarTextField(
                     title: "Masukkan emailmu",
                     index: 9,
-                    filltext: loginDaftarC.emailRegTF,
+                    filltext: loginDaftarC.emailLoginTF,
                   ),
                   const SizedBox(
                     height: 20,
@@ -51,7 +49,7 @@ class LoginView extends GetView<LoginController> {
                   LoginDaftarTextField(
                     title: "Masukkan kata sandi",
                     index: 1,
-                    filltext: loginDaftarC.passwordRegTF,
+                    filltext: loginDaftarC.passwordLoginTF,
                   ),
                   const SizedBox(
                     height: 20,
@@ -67,7 +65,8 @@ class LoginView extends GetView<LoginController> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Get.toNamed(AppPages.INITIAL);
+                      loginDaftarC.loginUserNow();
+                      // if (formKey.currentState!.validate()) {}
                     },
                     child: Container(
                       alignment: Alignment.center,

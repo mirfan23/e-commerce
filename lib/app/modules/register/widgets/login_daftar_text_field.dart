@@ -83,27 +83,27 @@ class LoginDaftarTextField extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            CountryCodePicker(
-                              onInit: ((value) {
-                                controller.formatNumberPhone = value.toString();
-                              }),
-                              onChanged: ((value) =>
-                                  controller.getFormatNumber(value.toString())),
-                              // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
-                              initialSelection: 'ID',
-                              favorite: const ['+62', 'ID'],
-                              dialogSize: Size(
-                                90.sw,
-                                80.sh,
-                              ),
-                              showCountryOnly: false,
-                              showFlag: false,
-                              padding: EdgeInsets.zero,
-                              // optional. Shows only country name and flag when popup is closed.
-                              showOnlyCountryWhenClosed: false,
-                              // optional. aligns the flag and the Text left
-                              alignLeft: false,
-                            ),
+                            // CountryCodePicker(
+                            //   onInit: ((value) {
+                            //     controller.formatNumberPhone = value.toString();
+                            //   }),
+                            //   onChanged: ((value) =>
+                            //       controller.getFormatNumber(value.toString())),
+                            //   // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
+                            //   initialSelection: 'ID',
+                            //   favorite: const ['+62', 'ID'],
+                            //   dialogSize: Size(
+                            //     90.sw,
+                            //     80.sh,
+                            //   ),
+                            //   showCountryOnly: false,
+                            //   showFlag: false,
+                            //   padding: EdgeInsets.zero,
+                            //   // optional. Shows only country name and flag when popup is closed.
+                            //   showOnlyCountryWhenClosed: false,
+                            //   // optional. aligns the flag and the Text left
+                            //   alignLeft: false,
+                            // ),
                             Image.asset(
                               'assets/icons/ic_tf_notelp.png',
                               height: 6,

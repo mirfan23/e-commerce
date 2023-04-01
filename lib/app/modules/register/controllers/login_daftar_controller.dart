@@ -4,8 +4,12 @@ import 'dart:convert';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:galeri_lukisan/app/data/providers/api_connection.dart';
+import 'package:galeri_lukisan/app/modules/home/views/dashboard_fragment.dart';
+import 'package:galeri_lukisan/app/modules/home/views/home_view.dart';
+import 'package:galeri_lukisan/app/routes/app_pages.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:galeri_lukisan/helper/user_preferences.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,9 +19,7 @@ class LoginDaftarController extends GetxController {
   var verifCode = true.obs;
   var isLogin = false;
 
-  String formatNumberPhone = "";
-
-  late TextEditingController usernameLoginTF;
+  late TextEditingController emailLoginTF;
   late TextEditingController passwordLoginTF;
 
   late TextEditingController usernameRegTF;
@@ -62,11 +64,6 @@ class LoginDaftarController extends GetxController {
     super.onInit();
   }
 
-  void getFormatNumber(String value) {
-    formatNumberPhone = value;
-    update();
-  }
-
   void errorEnabled(String value, int index, String message) {
     enableError[index] = true;
     messageError.insert(index, message);
@@ -76,13 +73,12 @@ class LoginDaftarController extends GetxController {
   void initTextRegister() {
     usernameRegTF = TextEditingController();
     emailRegTF = TextEditingController();
-    noHPRegTF = TextEditingController();
     passwordRegTF = TextEditingController();
     repasswordRegTF = TextEditingController();
   }
 
   void initTextLogin() {
-    usernameLoginTF = TextEditingController();
+    emailLoginTF = TextEditingController();
     passwordLoginTF = TextEditingController();
   }
 
@@ -93,32 +89,6 @@ class LoginDaftarController extends GetxController {
   void updateTextField(index) {
     tfObscure[index] = !tfObscure[index];
     update();
-  }
-
-  void loading() {
-    Get.dialog(
-      Wrap(
-        children: [
-          SizedBox(
-            width: 100.sw,
-            height: 100.sh,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                SizedBox(
-                  height: 10.sh,
-                  width: 10.sh,
-                  child: const CircularProgressIndicator(),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-      barrierDismissible: false,
-    );
   }
 
   validateUserEmail() async {
@@ -172,6 +142,40 @@ class LoginDaftarController extends GetxController {
     } catch (e) {
       print(e.toString());
       Fluttertoast.showToast(msg: e.toString());
+    }
+  }
+
+  loginUserNow() async {
+    try {
+      var res = await http.post(
+        Uri.parse(API.login),
+        body: {
+          "user_email": emailLoginTF.text.trim(),
+          "user_password": passwordLoginTF.text.trim(),
+        },
+      );
+      print(res.body);
+
+      if (res.statusCode == 200) {
+        var responBodyLogin = jsonDecode(res.body);
+        if (responBodyLogin['success'] == true) {
+          Fluttertoast.showToast(msg: "Login Berhasil");
+
+          User userInfo = User.fromJson(responBodyLogin["userData"]);
+
+          await RememberUserPreferences.storeUserInfo(userInfo);
+
+          Future.delayed(Duration(milliseconds: 500), () {
+            Get.to(() => DashboardFragment());
+          });
+        } else {
+          Fluttertoast.showToast(
+              msg:
+                  "Terjadi Kesalahan pada Email atau Password, \nSilahkan Coba Lagi");
+        }
+      }
+    } catch (e) {
+      print("Error::" + e.toString());
     }
   }
 }

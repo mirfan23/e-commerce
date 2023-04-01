@@ -92,60 +92,32 @@ class DetailLukisanView extends GetView<DetailLukisanController> {
                   children: [
                     Text("Pelukis"),
                     Container(
-                        height: 30.sh,
-                        // color: Colors.amber,
-                        child: Text(
-                            detailController.products.first.attributes.pelukis)
-                        // ListView.builder(
-                        //   itemCount: controller.products.length,
-                        //   itemBuilder: (context, index) {
-                        //     return Text(
-                        //         controller.products[index].attributes.pelukis);
-                        //   },
-                        // ),
-                        ),
+                      height: 30.sh,
+                      color: Colors.amber,
+                      // child: Text(
+                      //     detailController.products.first.attributes.pelukis)
+                    ),
                     Text("Tema"),
                     Container(
-                        height: 30.sh,
-                        // color: Colors.amber,
-                        child: Text(detailController
-                            .products.first.attributes.categories)
-                        // ListView.builder(
-                        //   itemCount: controller.products.length,
-                        //   itemBuilder: (context, index) {
-                        //     return Text(
-                        //         controller.products[index].attributes.categories);
-                        //   },
-                        // ),
-                        ),
+                      height: 30.sh,
+                      color: Colors.amber,
+                      // child: Text(detailController
+                      //     .products.first.attributes.categories)
+                    ),
                     Text("Warna"),
                     Container(
-                        height: 30.sh,
-                        // color: Colors.amber,
-                        child: Text(
-                            detailController.products.first.attributes.colors)
-                        // ListView.builder(
-                        //   itemCount: controller.products.length,
-                        //   itemBuilder: (context, index) {
-                        //     return Text(
-                        //         controller.products[index].attributes.colors);
-                        //   },
-                        // ),
-                        ),
+                      height: 30.sh,
+                      color: Colors.amber,
+                      // child: Text(
+                      //     detailController.products.first.attributes.colors)
+                    ),
                     Text("Deskripsi"),
                     Container(
-                        height: 30.sh,
-                        // color: Colors.amber,
-                        child: Text(detailController
-                            .products.first.attributes.description)
-                        // ListView.builder(
-                        //   itemCount: controller.products.length,
-                        //   itemBuilder: (context, index) {
-                        //     return Text(controller
-                        //         .products[index].attributes.description);
-                        //   },
-                        // ),
-                        ),
+                      height: 30.sh,
+                      color: Colors.amber,
+                      // child: Text(detailController
+                      //     .products.first.attributes.description)
+                    ),
                     Text("Ukuran"),
                     Container(
                       height: 30.sh,
