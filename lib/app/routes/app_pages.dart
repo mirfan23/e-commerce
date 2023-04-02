@@ -1,3 +1,4 @@
+import 'package:galeri_lukisan/app/data/models/productModel2.dart';
 import 'package:get/get.dart';
 
 import 'package:galeri_lukisan/app/modules/detail_lukisan/bindings/detail_lukisan_binding.dart';
@@ -19,7 +20,7 @@ class AppPages {
   AppPages._();
 
   static const INITIAL = Routes.HOME;
-  static const DETAIL = Routes.DETAIL_LUKISAN;
+  // static const DETAIL = Routes.DETAIL_LUKISAN;
   static const LOGIN = Routes.LOGIN;
   static const REGISTER = Routes.REGISTER;
   static const ORDER = Routes.ORDER;
@@ -30,11 +31,11 @@ class AppPages {
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
-    GetPage(
-      name: _Paths.DETAIL_LUKISAN,
-      page: () => DetailLukisanView(),
-      binding: DetailLukisanBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.DETAIL_LUKISAN,
+    //   page: () => DetailLukisanView(),
+    //   binding: DetailLukisanBinding(),
+    // ),
     GetPage(
       name: _Paths.REGISTER,
       page: () => RegisterView(),

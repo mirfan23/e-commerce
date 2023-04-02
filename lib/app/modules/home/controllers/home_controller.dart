@@ -5,9 +5,15 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../helper/const.dart';
+import '../../../data/models/productModel2.dart';
 import '../../../data/providers/product_provider.dart';
 
 class HomeController extends GetxController {
+  static HomeController instance = Get.find();
+
+  RxList<Product> productList = List<Product>.empty(growable: true).obs;
+  RxBool isProductLoading = false.obs;
+
   final productProvider = Get.put(ProductProvider);
   final products = <Datum>[].obs;
   var isLoading = true.obs;
@@ -17,6 +23,21 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     fetchProducts();
+    getproducts();
+  }
+
+  void getproducts() async {
+    try {
+      isProductLoading(true);
+      var result = await ProductProvider().get();
+      if (result != null) {
+        productList.assignAll(productListFromJson(result.body));
+        print("+++: ${result.body}");
+      }
+    } finally {
+      isProductLoading(false);
+      print(productList.length);
+    }
   }
 
   Future<void> fetchProducts() async {

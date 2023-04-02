@@ -1,30 +1,18 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:galeri_lukisan/app/modules/home/views/order_fragment.dart';
-import 'package:galeri_lukisan/app/modules/home/views/profile_fragment.dart';
-import 'package:galeri_lukisan/app/modules/order/views/order_view.dart';
-import 'package:galeri_lukisan/helper/current_user.dart';
+import 'package:galeri_lukisan/app/modules/home/widget/product_grid.dart';
+import 'package:galeri_lukisan/app/modules/home/widget/product_loading_grid.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
-import 'package:galeri_lukisan/helper/widget_extension.dart';
 import 'package:get/get.dart';
-import '../../../../helper/const.dart';
-import '../../../data/models/product_model.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 import '../widget/search_bar.dart';
 
 class HomeView extends GetView<HomeController> {
   final HomeController homeController = Get.find<HomeController>();
-  // CurrenUser rememberCurrentUser = Get.put(CurrenUser());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
         backgroundColor: Colors.white,
         title: Text(
           'Galeri Lukisan',
@@ -33,29 +21,6 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
         centerTitle: true,
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            InkWell(
-              onTap: () {
-                Get.toNamed(AppPages.REGISTER);
-              },
-              child: Container(
-                padding: EdgeInsets.all(2.sh),
-                child: Row(
-                  children: [
-                    Icon(Icons.logout),
-                    SizedBox(
-                      width: 2.sh,
-                    ),
-                    Text("Log Out"),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -70,56 +35,14 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 2.sh,
             ),
-            Obx(
-              () => Container(
-                padding: EdgeInsets.only(right: 3.sh, left: 3.sh),
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 2.sh,
-                    mainAxisSpacing: 2.sh,
-                  ),
-                  itemCount: controller.products.length,
-                  itemBuilder: ((context, index) {
-                    Datum product = homeController.products[index];
-                    return Column(
-                      children: [
-                        Image(
-                          image: AssetImage(
-                            'assets/images/monalisa.jpg',
-                          ),
-                          width: 19.sw,
-                        ),
-                        // CachedNetworkImage(
-                        //   imageUrl:
-                        //       // model.data[index].attributes.thumbnails.data.attributes.url,
-                        //       // homeController.imageUrl.value,
-                        //       '${'$baseUrl/products?populate=thumbnails'}${product.attributes.thumbnails.data.attributes.formats.thumbnail.url}',
-                        //   width: 19.sw,
-                        //   errorWidget: (context, url, error) =>
-                        //       Text('Error: $error'),
-                        //   placeholder: (context, url) =>
-                        //       CircularProgressIndicator(),
-                        // ),
-                        SizedBox(
-                          height: 1.sh,
-                        ),
-                        Text(
-                          product.attributes.title,
-                          style: TextStyle(fontSize: 12, color: Colors.black),
-                          overflow: TextOverflow.ellipsis,
-                        )
-                      ],
-                    ).margin(all: 2.sh).button(
-                          elevation: 3,
-                          onPressed: () {
-                            Get.toNamed(AppPages.DETAIL);
-                          },
-                        );
-                  }),
-                ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 2.sh,
+              ),
+              child: Obx(
+                () => homeController.productList.isNotEmpty
+                    ? ProductGrid(products: homeController.productList)
+                    : ProductLoadingGrid(),
               ),
             ),
           ],

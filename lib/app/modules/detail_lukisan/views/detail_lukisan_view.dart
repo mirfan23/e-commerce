@@ -1,129 +1,109 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:galeri_lukisan/app/modules/detail_lukisan/widget/product_carousel.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
-import 'package:galeri_lukisan/helper/list.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../data/models/product_model.dart';
+import '../../../data/models/productModel2.dart';
 import '../../../routes/app_pages.dart';
-import '../controllers/detail_lukisan_controller.dart';
 
-class DetailLukisanView extends GetView<DetailLukisanController> {
-  final DetailLukisanController detailController =
-      Get.find<DetailLukisanController>();
+class DetailLukisanView extends StatefulWidget {
+  final Product product;
+  const DetailLukisanView({Key? key, required this.product}) : super(key: key);
 
+  @override
+  State<DetailLukisanView> createState() => _DetailLukisanViewState();
+}
+
+class _DetailLukisanViewState extends State<DetailLukisanView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          'Detail Product',
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-        leading: IconButton(
-          splashRadius: 3.sh,
-          icon: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            size: 3.sh,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Get.toNamed(AppPages.INITIAL);
-          },
-        ),
-        centerTitle: true,
-      ),
-      body: Obx(
-        () => SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: ScrollPhysics(),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              ProductCarouselSlider(
+                images: widget.product.images,
+              ),
+              SizedBox(
+                height: 1.sh,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 1.sh),
+                child: Text(
+                  widget.product.name,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 2.sh,
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  left: 50,
-                  right: 50,
-                ),
-                child: Stack(
-                  children: [
-                    Container(
-                      height: 50.sh,
-                      width: 75.sw,
-                      child: CarouselSlider.builder(
-                        itemCount: MyList.film.length,
-                        itemBuilder: (_, index, ___) {
-                          Datum detail = detailController.products[index];
-                          return Container(
-                            child: Image(
-                              image: MyList.film[index],
-                            ),
-                          );
-                        },
-                        options: CarouselOptions(
-                          height: 300,
-                          viewportFraction: 1,
-                          enableInfiniteScroll: false,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 50.sh,
-                      alignment: Alignment.bottomLeft,
-                      child: Text("1/6"),
-                    )
-                  ],
+                padding: EdgeInsets.symmetric(horizontal: 1.sh),
+                child: Text(
+                  '\Rp. ${widget.product.price}',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
               SizedBox(
-                height: 5.sh,
+                height: 2.sh,
               ),
-              Container(
-                width: 50.sh,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Pelukis"),
-                    Container(
-                      height: 30.sh,
-                      color: Colors.amber,
-                      // child: Text(
-                      //     detailController.products.first.attributes.pelukis)
-                    ),
-                    Text("Tema"),
-                    Container(
-                      height: 30.sh,
-                      color: Colors.amber,
-                      // child: Text(detailController
-                      //     .products.first.attributes.categories)
-                    ),
-                    Text("Warna"),
-                    Container(
-                      height: 30.sh,
-                      color: Colors.amber,
-                      // child: Text(
-                      //     detailController.products.first.attributes.colors)
-                    ),
-                    Text("Deskripsi"),
-                    Container(
-                      height: 30.sh,
-                      color: Colors.amber,
-                      // child: Text(detailController
-                      //     .products.first.attributes.description)
-                    ),
-                    Text("Ukuran"),
-                    Container(
-                      height: 30.sh,
-                      color: Colors.amber,
-                    ),
-                  ],
+              Padding(
+                padding: EdgeInsets.all(1.sh),
+                child: Text(
+                  'Deskripsi',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(1.sh),
+                child: Text(
+                  widget.product.description,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 2.sh,
+              ),
+              Padding(
+                padding: EdgeInsets.all(1.sh),
+                child: Text(
+                  'Pelukis',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(1.sh),
+                child: Text(
+                  widget.product.pelukis,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               SizedBox(
