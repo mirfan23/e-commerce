@@ -1,16 +1,16 @@
-import 'package:galeri_lukisan/helper/user_preferences.dart';
-import 'package:get/get.dart';
+// import 'package:galeri_lukisan/helper/user_preferences.dart';
+// import 'package:get/get.dart';
 
-import '../app/data/models/user_Model.dart';
+// import '../app/data/models/user_Model.dart';
 
-class CurrenUser extends GetxController {
-  Rx<User> _currentUser = User(0, '', '', '').obs;
+// class CurrenUser extends GetxController {
+//   Rx<User> _currentUser = User(0, '', '', '').obs;
 
-  User get user => _currentUser.value;
+//   User get user => _currentUser.value;
 
-  getUserInfo() async {
-    User? getUserInfoFromLocalStorage =
-        await RememberUserPreferences.readUserInfo();
-    _currentUser.value = getUserInfoFromLocalStorage!;
-  }
-}
+//   getUserInfo() async {
+//     User? getUserInfoFromLocalStorage =
+//         await RememberUserPreferences.readUserInfo();
+//     _currentUser.value = getUserInfoFromLocalStorage!;
+//   }
+// }

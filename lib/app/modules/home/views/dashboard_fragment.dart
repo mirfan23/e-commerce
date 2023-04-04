@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:galeri_lukisan/app/modules/home/controllers/dashboard_controller.dart';
 import 'package:galeri_lukisan/app/modules/home/controllers/home_controller.dart';
 import 'package:galeri_lukisan/app/modules/home/views/home_view.dart';
 import 'package:galeri_lukisan/app/modules/home/views/order_fragment.dart';
@@ -11,7 +12,7 @@ import 'package:get/get.dart';
 
 class DashboardFragment extends StatelessWidget {
   final controller = Get.put(HomeController());
-  CurrenUser rememberCurrentUser = Get.put(CurrenUser());
+  // CurrenUser rememberCurrentUser = Get.put(CurrenUser());
 
   List<Widget> _fragmentScreen = [
     HomeView(),
@@ -41,14 +42,10 @@ class DashboardFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-      init: CurrenUser(),
-      initState: (currentState) {
-        rememberCurrentUser.getUserInfo();
-      },
+    return GetBuilder<DashboardController>(
       builder: (controller) {
         return Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           body: SafeArea(
             child: Obx(
               () => _fragmentScreen[_indexNumber.value],

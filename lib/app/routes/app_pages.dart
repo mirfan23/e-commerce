@@ -1,4 +1,6 @@
 import 'package:galeri_lukisan/app/data/models/productModel2.dart';
+import 'package:galeri_lukisan/app/modules/home/controllers/home_controller.dart';
+import 'package:galeri_lukisan/app/modules/home/views/dashboard_fragment.dart';
 import 'package:get/get.dart';
 
 import 'package:galeri_lukisan/app/modules/detail_lukisan/bindings/detail_lukisan_binding.dart';
@@ -24,6 +26,7 @@ class AppPages {
   static const LOGIN = Routes.LOGIN;
   static const REGISTER = Routes.REGISTER;
   static const ORDER = Routes.ORDER;
+  // static const DASHBOARD = Routes.DASHBOARD;
 
   static final routes = [
     GetPage(
@@ -51,5 +54,10 @@ class AppPages {
       page: () => OrderView(),
       binding: OrderBinding(),
     ),
+    // GetPage(
+    //   name: _Paths.DASHBOARD,
+    //   page: () => DashboardFragment(),
+    //   binding: HomeBinding(),
+    // ),
   ];
 }

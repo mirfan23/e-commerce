@@ -40,9 +40,13 @@ class HomeView extends GetView<HomeController> {
                 horizontal: 2.sh,
               ),
               child: Obx(
-                () => homeController.productList.isNotEmpty
-                    ? ProductGrid(products: homeController.productList)
-                    : ProductLoadingGrid(),
+                () => homeController.isProductLoading.value
+                    ? ProductLoadingGrid()
+                    : homeController.productList.isNotEmpty
+                        ? ProductGrid(products: homeController.productList)
+                        : Center(
+                            child: Text('Lukisan TIdak Ditemukan'),
+                          ),
               ),
             ),
           ],

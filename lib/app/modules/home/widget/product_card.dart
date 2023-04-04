@@ -39,23 +39,26 @@ class ProductCard extends StatelessWidget {
               Flexible(
                 flex: 2,
                 child: Center(
-                  child: CachedNetworkImage(
-                    imageUrl: baseUrl + product.images.first,
-                    placeholder: (context, url) => Shimmer.fromColors(
-                      highlightColor: Colors.white,
-                      baseColor: Colors.grey.shade300,
-                      child: Container(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 2.sh,
+                  child: Hero(
+                    tag: product.images.first,
+                    child: CachedNetworkImage(
+                      imageUrl: baseUrl + product.images.first,
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        highlightColor: Colors.white,
+                        baseColor: Colors.grey.shade300,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: 2.sh,
+                          ),
+                          color: Colors.grey.shade300,
                         ),
-                        color: Colors.grey.shade300,
                       ),
+                      errorWidget: (context, url, error) => Center(
+                          child: Icon(
+                        Icons.error_outline,
+                        color: Colors.grey,
+                      )),
                     ),
-                    errorWidget: (context, url, error) => Center(
-                        child: Icon(
-                      Icons.error_outline,
-                      color: Colors.grey,
-                    )),
                   ),
                 ),
               ),

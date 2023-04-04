@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_overrides
 
-import 'package:galeri_lukisan/app/data/models/product_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,15 +13,9 @@ class HomeController extends GetxController {
   RxList<Product> productList = List<Product>.empty(growable: true).obs;
   RxBool isProductLoading = false.obs;
 
-  final productProvider = Get.put(ProductProvider);
-  final products = <Datum>[].obs;
-  var isLoading = true.obs;
-  var imageUrl = "".obs;
-
   @override
   void onInit() {
     super.onInit();
-    fetchProducts();
     getproducts();
   }
 
@@ -40,27 +33,29 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> fetchProducts() async {
+  void getProductByName({required String keyword}) async {
     try {
-      final response =
-          await http.get(Uri.parse('$baseUrl/products?populate=thumbnails'));
-      if (response.statusCode == 200) {
-        final List<Datum> productData =
-            productModelFromJson(response.body).data;
-        products.assignAll(productData);
-        print("+++: ${response.body}");
-      } else {
-        print('Request failed with status: ${response.statusCode}.');
+      isProductLoading(true);
+      var result = await ProductProvider().getbyName(keyword: keyword);
+      if (result != null) {
+        productList.assignAll(productListFromJson(result.body));
       }
-    } catch (e) {
-      print('Error: $e');
+    } finally {
+      isProductLoading(false);
+      print(productList.length);
     }
   }
 
-  void getImagesUrl(String productId) async {
-    final response = await http.get(Uri.parse('$baseUrl/products'));
-    final product = productModelFromJson(response.body);
-    imageUrl.value =
-        product.data.first.attributes.thumbnails.data.attributes.url;
+  void getProductByPelukis({required String keyword}) async {
+    try {
+      isProductLoading(true);
+      var result = await ProductProvider().getbyPelukis(keyword: keyword);
+      if (result != null) {
+        productList.assignAll(productListFromJson(result.body));
+      }
+    } finally {
+      isProductLoading(false);
+      print(productList.length);
+    }
   }
 }
