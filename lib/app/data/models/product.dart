@@ -19,7 +19,6 @@ class Product {
     required this.description,
     required this.pelukis,
     required this.images,
-    // required this.tags,
   });
 
   factory Product.productFromJson(Map<String, dynamic> data) => Product(
@@ -30,7 +29,5 @@ class Product {
         pelukis: data['attributes']['pelukis'],
         images: List<String>.from(data['attributes']['images']['data']
             .map((image) => image['attributes']['url'])),
-        // tags: List<Tag>.from(
-        //     data['attributes']['tags'].map((val) => Tag.fromJson(val))),
       );
 }

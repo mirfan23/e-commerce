@@ -7,12 +7,10 @@ import 'package:galeri_lukisan/app/modules/home/controllers/home_controller.dart
 import 'package:galeri_lukisan/app/modules/home/views/home_view.dart';
 import 'package:galeri_lukisan/app/modules/home/views/order_fragment.dart';
 import 'package:galeri_lukisan/app/modules/home/views/profile_fragment.dart';
-import 'package:galeri_lukisan/helper/current_user.dart';
 import 'package:get/get.dart';
 
 class DashboardFragment extends StatelessWidget {
   final controller = Get.put(HomeController());
-  // CurrenUser rememberCurrentUser = Get.put(CurrenUser());
 
   List<Widget> _fragmentScreen = [
     HomeView(),

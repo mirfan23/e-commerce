@@ -1,20 +1,21 @@
-import 'package:galeri_lukisan/app/data/models/user_model2.dart';
 import 'package:hive/hive.dart';
 
-class LocalAuth {
+import '../models/user.dart';
+
+class LocalAuthService {
   late Box<String> _tokenBox;
-  late Box<UserModel> _userBox;
+  late Box<User> _userBox;
 
   Future<void> init() async {
     _tokenBox = await Hive.openBox<String>('token');
-    _userBox = await Hive.openBox<UserModel>('user');
+    _userBox = await Hive.openBox<User>('user');
   }
 
   Future<void> addToken({required String token}) async {
     await _tokenBox.put('token', token);
   }
 
-  Future<void> addUser({required UserModel user}) async {
+  Future<void> addUser({required User user}) async {
     await _userBox.put('user', user);
   }
 
@@ -24,5 +25,5 @@ class LocalAuth {
   }
 
   String? getToken() => _tokenBox.get('token');
-  UserModel? getUser() => _userBox.get('user');
+  User? getUser() => _userBox.get('user');
 }

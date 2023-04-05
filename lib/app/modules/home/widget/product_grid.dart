@@ -1,6 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:galeri_lukisan/app/data/models/productModel2.dart';
+import 'package:galeri_lukisan/app/data/models/product.dart';
 import 'package:galeri_lukisan/app/modules/home/widget/product_card.dart';
 import 'package:flutter/material.dart';
 

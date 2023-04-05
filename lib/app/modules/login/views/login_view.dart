@@ -1,65 +1,68 @@
+import 'package:galeri_lukisan/app/modules/register/controllers/auth_controller.dart';
 import 'package:galeri_lukisan/app/modules/register/views/register_view.dart';
-import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:galeri_lukisan/helper/string_extension.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../helper/controllers.dart';
 import '../../../../helper/input_outline_button.dart';
 import '../../../../helper/input_text_button.dart';
 import '../../../../helper/input_text_field.dart';
-import '../../register/controllers/login_daftar_controller.dart';
-import '../../register/widgets/login_daftar_divider.dart';
-import '../../register/widgets/login_daftar_text_field.dart';
-import '../../register/widgets/login_daftar_text_view.dart';
-import '../../register/widgets/login_or_daftar.dart';
 import '../controllers/login_controller.dart';
 
-// class SignInScreen extends StatefulWidget {
-//   const SignInScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({Key? key}) : super(key: key);
 
-//   @override
-//   State<SignInScreen> createState() => _SignInScreenState();
-// }
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
 
-class LoginView extends GetView<LoginController> {
-  // final loginDaftarC = Get.put(LoginDaftarController());
-  var formKey = GlobalKey<FormState>();
-  // final LoginController loginController = Get.put(LoginController());
+class _SignInScreenState extends State<SignInScreen> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final AuthController _authController = Get.put(AuthController());
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: formKey,
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Spacer(),
-                Text(
-                  "Welcome",
+                const Spacer(),
+                const Text("Welcome,",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold)),
+                const Text(
+                  "Sign in to continue!",
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      color: Colors.grey,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 1.2),
                 ),
-                Text(
-                  "Log to Continue",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 1.2,
-                  ),
+                const Spacer(
+                  flex: 3,
                 ),
-                Spacer(),
                 InputTextField(
                   title: 'Email',
-                  textEditingController: controller.emailController,
+                  textEditingController: emailController,
                   validation: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "This field can't be empty";
@@ -73,7 +76,7 @@ class LoginView extends GetView<LoginController> {
                 InputTextField(
                   title: 'Password',
                   obsecureText: true,
-                  textEditingController: controller.passwordController,
+                  textEditingController: passwordController,
                   validation: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "This field can't be empty";
@@ -98,10 +101,10 @@ class LoginView extends GetView<LoginController> {
                 InputTextButton(
                   title: "Sign In",
                   onClick: () {
-                    if (formKey.currentState!.validate()) {
-                      controller.signIn(
-                          email: controller.emailController.text,
-                          password: controller.passwordController.text);
+                    if (_formKey.currentState!.validate()) {
+                      _authController.signIn(
+                          email: emailController.text,
+                          password: passwordController.text);
                     }
                   },
                 ),
@@ -124,7 +127,7 @@ class LoginView extends GetView<LoginController> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RegisterView()));
+                                builder: (context) => const SignUpScreen()));
                       },
                       child: const Text(
                         "Sign Up",
@@ -139,72 +142,6 @@ class LoginView extends GetView<LoginController> {
           ),
         ),
       ),
-      // SingleChildScrollView(
-      //   child: Column(
-      //     children: [
-      //       Container(
-      //         padding: EdgeInsets.all(1.sh),
-      //         child: Column(
-      //           children: [
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             LoginDaftarTextView(
-      //               title: "Email",
-      //             ),
-      //             LoginDaftarTextField(
-      //               title: "Masukkan emailmu",
-      //               index: 9,
-      //               filltext: loginDaftarC.emailLoginTF,
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             LoginDaftarTextView(
-      //               title: "Buat Kata Sandi",
-      //             ),
-      //             LoginDaftarTextField(
-      //               title: "Masukkan kata sandi",
-      //               index: 1,
-      //               filltext: loginDaftarC.passwordLoginTF,
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             const LoginDaftarDivider(
-      //               title: 'masuk',
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             ElevatedButton(
-      //               onPressed: () {
-      //                 loginDaftarC.loginUserNow();
-      //                 // if (formKey.currentState!.validate()) {}
-      //               },
-      //               child: Container(
-      //                 alignment: Alignment.center,
-      //                 height: 5.sh,
-      //                 width: 15.sh,
-      //                 child: Text("Log in"),
-      //               ),
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             const LoginOrDaftar(temp: 'masuk'),
-      //             const SizedBox(
-      //               height: 5,
-      //             ),
-      //           ],
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

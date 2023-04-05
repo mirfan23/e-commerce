@@ -72,13 +72,14 @@ class _ProductCarouselSliderState extends State<ProductCarouselSlider> {
                     }),
               ),
               Positioned(
-                  left: 2.sh,
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back_ios),
-                  ))
+                left: 2.sh,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back_ios),
+                ),
+              ),
             ],
           ),
           Row(

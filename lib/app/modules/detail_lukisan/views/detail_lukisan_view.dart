@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../data/models/productModel2.dart';
+import '../../../data/models/product.dart';
 import '../../../routes/app_pages.dart';
 
 class DetailLukisanView extends StatefulWidget {

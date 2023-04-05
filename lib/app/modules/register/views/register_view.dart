@@ -7,15 +7,36 @@ import 'package:galeri_lukisan/helper/string_extension.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../helper/controllers.dart';
 import '../../../../helper/input_outline_button.dart';
 import '../../../../helper/input_text_button.dart';
 import '../../../../helper/input_text_field.dart';
+import '../controllers/auth_controller.dart';
 import '../controllers/register_controller.dart';
 
-class RegisterView extends GetView<RegisterController> {
-  // final loginDaftarC = Get.put(LoginDaftarController());
-  final RegisterController registerController = Get.put(RegisterController());
-  var formKey = GlobalKey<FormState>();
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmController = TextEditingController();
+  final AuthController _authController = Get.put(AuthController());
+
+  @override
+  void dispose() {
+    fullNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +46,7 @@ class RegisterView extends GetView<RegisterController> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: formKey,
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -48,7 +69,7 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 InputTextField(
                   title: 'Full Name',
-                  textEditingController: registerController.fullNameController,
+                  textEditingController: fullNameController,
                   validation: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "This field can't be empty";
@@ -59,7 +80,7 @@ class RegisterView extends GetView<RegisterController> {
                 const SizedBox(height: 10),
                 InputTextField(
                   title: 'Email',
-                  textEditingController: registerController.emailController,
+                  textEditingController: emailController,
                   validation: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "This field can't be empty";
@@ -73,7 +94,7 @@ class RegisterView extends GetView<RegisterController> {
                 InputTextField(
                   title: 'Password',
                   obsecureText: true,
-                  textEditingController: registerController.passwordController,
+                  textEditingController: passwordController,
                   validation: (String? value) {
                     List<String> _validation = [];
                     if (value == null || value.isEmpty) {
@@ -95,12 +116,11 @@ class RegisterView extends GetView<RegisterController> {
                 InputTextField(
                   title: 'Confirm Password',
                   obsecureText: true,
-                  textEditingController: registerController.confirmController,
+                  textEditingController: confirmController,
                   validation: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "This field can't be empty";
-                    } else if (registerController.passwordController.text !=
-                        value) {
+                    } else if (passwordController.text != value) {
                       return "Confirm password not match";
                     }
                     return null;
@@ -111,13 +131,12 @@ class RegisterView extends GetView<RegisterController> {
                 InputTextButton(
                   title: "Sign Up",
                   onClick: () {
-                    if (formKey.currentState!.validate()) {
-                      registerController.signUp(
-                        fullName: registerController.fullNameController.text,
-                        email: registerController.emailController.text,
-                        password: registerController.passwordController.text,
+                    if (_formKey.currentState!.validate()) {
+                      authController.signUp(
+                        fullName: fullNameController.text,
+                        email: emailController.text,
+                        password: passwordController.text,
                       );
-                      Get.toNamed(AppPages.LOGIN);
                     }
                   },
                 ),
@@ -140,7 +159,7 @@ class RegisterView extends GetView<RegisterController> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginView()));
+                                builder: (context) => const SignInScreen()));
                       },
                       child: const Text(
                         "Sign In",
@@ -155,98 +174,6 @@ class RegisterView extends GetView<RegisterController> {
           ),
         ),
       ),
-      // SingleChildScrollView(
-      //   child: Column(
-      //     children: [
-      //       Container(
-      //         padding: EdgeInsets.all(1.sh),
-      //         child: Column(
-      //           children: [
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             Form(
-      //               key: formKey,
-      //               child: Column(
-      //                 children: [
-      //                   LoginDaftarTextView(
-      //                     title: "Nama",
-      //                   ),
-      //                   LoginDaftarTextField(
-      //                     title: "Nama lengkap kamu",
-      //                     index: 9,
-      //                     filltext: loginDaftarC.usernameRegTF,
-      //                   ),
-      //                   const SizedBox(
-      //                     height: 20,
-      //                   ),
-      //                   LoginDaftarTextView(
-      //                     title: "Email",
-      //                   ),
-      //                   LoginDaftarTextField(
-      //                     title: "Masukkan emailmu",
-      //                     index: 9,
-      //                     filltext: loginDaftarC.emailRegTF,
-      //                   ),
-      //                   const SizedBox(
-      //                     height: 20,
-      //                   ),
-      //                   const SizedBox(
-      //                     height: 20,
-      //                   ),
-      //                   LoginDaftarTextView(
-      //                     title: "Buat Kata Sandi",
-      //                   ),
-      //                   LoginDaftarTextField(
-      //                     title: "Masukkan kata sandi",
-      //                     index: 1,
-      //                     filltext: loginDaftarC.passwordRegTF,
-      //                   ),
-      //                 ],
-      //               ),
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             const LoginDaftarDivider(
-      //               title: 'daftar',
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             ElevatedButton(
-      //               onPressed: () {
-      //                 if (formKey.currentState!.validate()) {
-      //                   loginDaftarC.validateUserEmail();
-      //                   // Get.toNamed(AppPages.LOGIN);
-      //                 }
-      //               },
-      //               child: Container(
-      //                 alignment: Alignment.center,
-      //                 height: 5.sh,
-      //                 width: 15.sh,
-      //                 child: Text("Register"),
-      //               ),
-      //             ),
-      //             const SizedBox(
-      //               height: 20,
-      //             ),
-      //             const LoginOrDaftar(temp: 'login'),
-      //             const SizedBox(
-      //               height: 5,
-      //             ),
-      //           ],
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

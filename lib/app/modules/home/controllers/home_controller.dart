@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../helper/const.dart';
-import '../../../data/models/productModel2.dart';
+import '../../../data/models/product.dart';
 import '../../../data/providers/product_provider.dart';
 
 class HomeController extends GetxController {

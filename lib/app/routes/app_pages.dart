@@ -1,4 +1,4 @@
-import 'package:galeri_lukisan/app/data/models/productModel2.dart';
+import 'package:galeri_lukisan/app/data/models/product.dart';
 import 'package:galeri_lukisan/app/modules/home/controllers/home_controller.dart';
 import 'package:galeri_lukisan/app/modules/home/views/dashboard_fragment.dart';
 import 'package:get/get.dart';
@@ -14,6 +14,8 @@ import 'package:galeri_lukisan/app/modules/order/views/order_view.dart';
 import 'package:galeri_lukisan/app/modules/register/bindings/register_binding.dart';
 import 'package:galeri_lukisan/app/modules/register/views/register_view.dart';
 
+import '../modules/home/bindings/dashboard_binding.dart';
+
 // ignore_for_file: constant_identifier_names, depend_on_referenced_packages
 
 part 'app_routes.dart';
@@ -26,7 +28,7 @@ class AppPages {
   static const LOGIN = Routes.LOGIN;
   static const REGISTER = Routes.REGISTER;
   static const ORDER = Routes.ORDER;
-  // static const DASHBOARD = Routes.DASHBOARD;
+  static const DASHBOARD = Routes.DASHBOARD;
 
   static final routes = [
     GetPage(
@@ -41,12 +43,12 @@ class AppPages {
     // ),
     GetPage(
       name: _Paths.REGISTER,
-      page: () => RegisterView(),
+      page: () => SignUpScreen(),
       binding: RegisterBinding(),
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () => LoginView(),
+      page: () => SignInScreen(),
       binding: LoginBinding(),
     ),
     GetPage(
@@ -54,10 +56,9 @@ class AppPages {
       page: () => OrderView(),
       binding: OrderBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.DASHBOARD,
-    //   page: () => DashboardFragment(),
-    //   binding: HomeBinding(),
-    // ),
+    GetPage(
+        name: _Paths.DASHBOARD,
+        page: () => DashboardFragment(),
+        binding: DashboardBinding()),
   ];
 }

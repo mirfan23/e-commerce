@@ -1,29 +1,41 @@
-// import 'dart:convert';
+import 'dart:convert';
 
-// import 'package:shared_preferences/shared_preferences.dart';
-// import '../app/data/models/user_Model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../app/data/models/user.dart';
 
-// class RememberUserPreferences {
-//   static Future<void> storeUserInfo(User userInfo) async {
-//     SharedPreferences preferences = await SharedPreferences.getInstance();
-//     String userJsonData = jsonEncode(userInfo.toJson());
-//     await preferences.setString("currentUser", userJsonData);
-//   }
+class RememberUserPreferences {
+  static SharedPreferences? _prefs;
+  static Future<void> init() async {
+    _prefs = await SharedPreferences.getInstance();
+  }
 
-//   static Future<User?> readUserInfo() async {
-//     User? currentUserInfo;
-//     SharedPreferences preferences = await SharedPreferences.getInstance();
-//     String? userInfo = preferences.getString("currentUser");
+  static Future<bool> saveToken(String token) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.setString('token', token);
+  }
 
-//     if (userInfo != null) {
-//       Map<String, dynamic> userDataMap = jsonDecode(userInfo);
-//       currentUserInfo = User.fromJson(userDataMap);
-//     }
-//     return currentUserInfo;
-//   }
+  static Future<String?> readToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('token');
+  }
 
-//   static Future<void> removeUserInfo() async {
-//     SharedPreferences preferences = await SharedPreferences.getInstance();
-//     await preferences.remove("currentUser");
-//   }
-// }
+  // static Future<bool> saveUserInfo(User user) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   return prefs.setString('user', json.encode(user.toJson()));
+  // }
+
+  static Future<User?> readUserInfo() async {
+    final prefs = await SharedPreferences.getInstance();
+    final userString = prefs.getString('user');
+    if (userString != null) {
+      final userData = json.decode(userString);
+      return User.fromJson(userData);
+    }
+    return null;
+  }
+
+  static Future<void> clear() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
+}

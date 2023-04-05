@@ -7,7 +7,7 @@ import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../data/models/productModel2.dart';
+import '../../../data/models/product.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
