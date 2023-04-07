@@ -4,9 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../app/data/models/user.dart';
 
 class RememberUserPreferences {
-  static SharedPreferences? _prefs;
+  static SharedPreferences? prefs;
   static Future<void> init() async {
-    _prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
   }
 
   static Future<bool> saveToken(String token) async {

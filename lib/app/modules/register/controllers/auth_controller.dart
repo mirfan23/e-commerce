@@ -16,6 +16,13 @@ class AuthController extends GetxController {
   @override
   void onInit() async {
     await _localAuthService.init();
+    final userFromStorage = _localAuthService.getUser();
+    if (userFromStorage != null) {
+      user.value = userFromStorage;
+      Get.offNamed(AppPages.DASHBOARD);
+    } else {
+      user.value = null;
+    }
     super.onInit();
   }
 
@@ -46,7 +53,8 @@ class AuthController extends GetxController {
           EasyLoading.showError('Terjadi Kesalahan. Coba Lagi!');
         }
       } else {
-        EasyLoading.showError('Terjadi Kesalahan. Coba Lagi!');
+        EasyLoading.showError(
+            'Username/Email sudah Terpakai, \nSilahkan coba lagi');
       }
     } catch (e) {
       EasyLoading.showError('Terjadi Kesalahan. Coba Lagi!');
@@ -91,5 +99,6 @@ class AuthController extends GetxController {
   void signOut() async {
     user.value = null;
     await _localAuthService.clear();
+    Get.offNamed(AppPages.LOGIN);
   }
 }

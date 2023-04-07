@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:galeri_lukisan/app/modules/home/views/dashboard_fragment.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
 import '../controllers/order_controller.dart';
 
 class OrderView extends GetView<OrderController> {
@@ -26,7 +26,7 @@ class OrderView extends GetView<OrderController> {
             color: Colors.black,
           ),
           onPressed: () {
-            Get.toNamed(AppPages.INITIAL);
+            Get.to(() => DashboardFragment());
           },
         ),
         centerTitle: true,

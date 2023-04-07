@@ -1,15 +1,13 @@
 import 'package:galeri_lukisan/app/modules/register/controllers/auth_controller.dart';
-import 'package:galeri_lukisan/app/modules/register/views/register_view.dart';
+import 'package:galeri_lukisan/app/modules/register/views/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:galeri_lukisan/helper/string_extension.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../helper/controllers.dart';
 import '../../../../helper/input_outline_button.dart';
 import '../../../../helper/input_text_button.dart';
 import '../../../../helper/input_text_field.dart';
-import '../controllers/login_controller.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);

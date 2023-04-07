@@ -5,6 +5,8 @@ import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/models/product.dart';
 import '../../../routes/app_pages.dart';
@@ -50,7 +52,11 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 1.sh),
                 child: Text(
-                  '\Rp. ${widget.product.price}',
+                  NumberFormat.currency(
+                    locale: 'id',
+                    decimalDigits: 0,
+                    symbol: 'Rp ',
+                  ).format(widget.product.price),
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
@@ -106,6 +112,27 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                   ),
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.all(1.sh),
+                child: Text(
+                  'Ukuran',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(1.sh),
+                child: Text(
+                  widget.product.ukuran ?? "Tidak diketahui",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 2.sh,
               ),
@@ -121,7 +148,9 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _openWhatsApp();
+              },
               child: Text("Hubungi Admin"),
             ),
             SizedBox(
@@ -129,7 +158,7 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
             ),
             ElevatedButton(
               onPressed: () {
-                Get.toNamed(AppPages.ORDER);
+                Get.offAllNamed(AppPages.DASHBOARD, arguments: 3);
               },
               child: Text("Beli"),
             ),
@@ -138,4 +167,10 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
       ),
     );
   }
+}
+
+void _openWhatsApp() async {
+  String phoneNumber = '082380599958';
+  var url = 'htpps://wa.me/$phoneNumber?text=Hello....';
+  await launchUrl(Uri.parse(url));
 }

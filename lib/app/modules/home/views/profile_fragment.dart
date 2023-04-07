@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:galeri_lukisan/app/modules/login/views/login_view.dart';
 import 'package:galeri_lukisan/helper/controllers.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:get/get.dart';
@@ -15,69 +14,48 @@ class ProfileFragment extends StatelessWidget {
           SizedBox(
             height: 2.sh,
           ),
-          Obx(
-            () => Row(
-              children: [
-                CircleAvatar(
-                  radius: 36,
-                  backgroundColor: Colors.grey,
-                  child: CircleAvatar(
-                    radius: 35,
-                    backgroundImage: AssetImage('assets/images/user1.png'),
-                  ),
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 36,
+                backgroundColor: Colors.grey,
+                child: CircleAvatar(
+                  radius: 35,
+                  backgroundImage: AssetImage('assets/images/user1.png'),
                 ),
-                SizedBox(
-                  width: 1.sw,
-                ),
-                Column(
-                  children: [
-                    Text(
-                      authController.user.value?.fullName ??
-                          "Masuk Kedalam Akun Anda",
+              ),
+              SizedBox(
+                width: 1.sw,
+              ),
+              Column(
+                children: [
+                  Obx(
+                    () => Text(
+                      authController.user.value?.fullName ?? "USER",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                       ),
-                    )
-                  ],
-                )
-              ],
-            ),
+                    ),
+                  )
+                ],
+              )
+            ],
           ),
           SizedBox(
             height: 5.sh,
           ),
-          AccountCard(
-              title: "Profile Info",
+          accountCard(
+              title: "Sign Out",
               onClick: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignInScreen(),
-                  ),
-                );
+                authController.signOut();
               }),
-          Obx(
-            () => AccountCard(
-                title:
-                    authController.user.value == null ? "Sign In" : "Sign Out",
-                onClick: () {
-                  if (authController.user.value != null) {
-                    authController.signOut();
-                  } else {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SignInScreen()));
-                  }
-                }),
-          )
         ],
       ),
     );
   }
 
-  Widget AccountCard({required String title, required Function() onClick}) {
+  Widget accountCard({required String title, required Function() onClick}) {
     return Padding(
       padding: EdgeInsets.only(bottom: 14),
       child: GestureDetector(

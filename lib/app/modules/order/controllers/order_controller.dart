@@ -1,8 +1,8 @@
+// ignore_for_file: unnecessary_overrides
+
 import 'package:get/get.dart';
 
 class OrderController extends GetxController {
-  //TODO: Implement OrderController
-
   final count = 0.obs;
   @override
   void onInit() {

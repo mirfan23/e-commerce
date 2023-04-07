@@ -1,18 +1,13 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:galeri_lukisan/app/modules/login/views/login_view.dart';
-import 'package:galeri_lukisan/app/routes/app_pages.dart';
+import 'package:galeri_lukisan/app/modules/login/views/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:galeri_lukisan/helper/string_extension.dart';
-
-import 'package:get/get.dart';
 
 import '../../../../helper/controllers.dart';
 import '../../../../helper/input_outline_button.dart';
 import '../../../../helper/input_text_button.dart';
 import '../../../../helper/input_text_field.dart';
-import '../controllers/auth_controller.dart';
-import '../controllers/register_controller.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -27,7 +22,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmController = TextEditingController();
-  final AuthController _authController = Get.put(AuthController());
 
   @override
   void dispose() {
@@ -96,16 +90,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   obsecureText: true,
                   textEditingController: passwordController,
                   validation: (String? value) {
-                    List<String> _validation = [];
+                    List<String> validation = [];
                     if (value == null || value.isEmpty) {
                       return "This field can't be empty";
                     }
                     String msg = '';
-                    if (_validation.isNotEmpty) {
-                      for (var i = 0; i < _validation.length; i++) {
-                        msg = msg + _validation[i];
-                        if ((i + 1) != _validation.length) {
-                          msg = msg + "\n";
+                    if (validation.isNotEmpty) {
+                      for (var i = 0; i < validation.length; i++) {
+                        msg = msg + validation[i];
+                        if ((i + 1) != validation.length) {
+                          msg = "$msg\n";
                         }
                       }
                     }

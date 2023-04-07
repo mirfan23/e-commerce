@@ -1,9 +1,6 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-
-import '../../../../helper/const.dart';
 import '../../../data/models/product.dart';
 import '../../../data/providers/product_provider.dart';
 
