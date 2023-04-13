@@ -1,5 +1,5 @@
 import 'package:galeri_lukisan/app/modules/register/controllers/auth_controller.dart';
-import 'package:galeri_lukisan/app/modules/register/views/signup_view.dart';
+import 'package:galeri_lukisan/app/modules/register/views/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:galeri_lukisan/helper/string_extension.dart';
 
@@ -9,14 +9,14 @@ import '../../../../helper/input_outline_button.dart';
 import '../../../../helper/input_text_button.dart';
 import '../../../../helper/input_text_field.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+class LoginView extends StatefulWidget {
+  const LoginView({Key? key}) : super(key: key);
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<LoginView> createState() => _LoginView();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _LoginView extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -48,7 +48,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         fontSize: 32,
                         fontWeight: FontWeight.bold)),
                 const Text(
-                  "Sign in to continue!",
+                  "Log in to continue!",
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 22,
@@ -82,35 +82,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: const Text(
-                        "Forgot Password",
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    )
-                  ],
-                ),
                 const Spacer(),
                 InputTextButton(
-                  title: "Sign In",
+                  title: "Log In",
                   onClick: () {
                     if (_formKey.currentState!.validate()) {
                       _authController.signIn(
                           email: emailController.text,
                           password: passwordController.text);
                     }
-                  },
-                ),
-                const SizedBox(height: 10),
-                InputOutlineButton(
-                  title: "Back",
-                  onClick: () {
-                    Navigator.of(context).pop();
                   },
                 ),
                 const Spacer(
@@ -125,11 +105,12 @@ class _SignInScreenState extends State<SignInScreen> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignUpScreen()));
+                                builder: (context) => const RegisterView()));
                       },
                       child: const Text(
-                        "Sign Up",
-                        style: TextStyle(color: Colors.blue),
+                        "Register",
+                        style:
+                            TextStyle(color: Color.fromRGBO(54, 105, 201, 1)),
                       ),
                     )
                   ],

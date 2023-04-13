@@ -18,56 +18,71 @@ class OrderView extends GetView<OrderController> {
             color: Colors.black,
           ),
         ),
-        leading: IconButton(
-          splashRadius: 3.sh,
-          icon: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            size: 3.sh,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Get.to(() => DashboardFragment());
-          },
-        ),
+        // leading: IconButton(
+        //   splashRadius: 3.sh,
+        //   icon: Icon(
+        //     Icons.arrow_back_ios_new_rounded,
+        //     size: 3.sh,
+        //     color: Colors.black,
+        //   ),
+        //   onPressed: () {
+        //     Get.to(() => DashboardFragment());
+        //   },
+        // ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15),
-          child: Column(
-            children: [
-              Container(
-                color: Colors.black,
-                width: 50.sh,
-                height: 50.sh,
+          child: Column(children: [
+            Container(
+              height: 10.sh,
+              padding: EdgeInsets.symmetric(horizontal: 2.sh),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      12,
+                    ),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.4),
+                      spreadRadius: 0.1,
+                      blurRadius: 7,
+                    )
+                  ]),
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child:
+                        Image(image: AssetImage('assets/images/monalisa.jpg')),
+                  ),
+                  SizedBox(
+                    width: 4.sh,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Monalisa",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 2.sh,
+                      ),
+                      Text("Rp. 20.000.000")
+                    ],
+                  ),
+                ],
               ),
-              Container(
-                color: Colors.amber,
-                width: 50.sh,
-                height: 50.sh,
-              ),
-              Container(
-                color: Colors.black,
-                width: 50.sh,
-                height: 50.sh,
-              ),
-              Container(
-                color: Colors.amber,
-                width: 50.sh,
-                height: 50.sh,
-              ),
-              Container(
-                color: Colors.black,
-                width: 50.sh,
-                height: 50.sh,
-              ),
-              Container(
-                color: Colors.amber,
-                width: 50.sh,
-                height: 50.sh,
-              ),
-            ],
-          ),
+            ),
+          ]),
         ),
       ),
     );

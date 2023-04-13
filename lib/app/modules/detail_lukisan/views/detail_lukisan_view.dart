@@ -13,7 +13,7 @@ import '../../../routes/app_pages.dart';
 
 class DetailLukisanView extends StatefulWidget {
   final Product product;
-  const DetailLukisanView({Key? key, required this.product}) : super(key: key);
+  DetailLukisanView({Key? key, required this.product}) : super(key: key);
 
   @override
   State<DetailLukisanView> createState() => _DetailLukisanViewState();
@@ -40,9 +40,9 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                 child: Text(
                   widget.product.name,
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
+                    fontSize: 24,
+                    color: Color.fromRGBO(12, 26, 48, 1),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -59,7 +59,7 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                   ).format(widget.product.price),
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Color.fromRGBO(254, 58, 48, 1),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -73,7 +73,7 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                   'Deskripsi',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Color.fromRGBO(12, 26, 48, 1),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -84,7 +84,7 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                   widget.product.description,
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Color.fromRGBO(54, 105, 201, 1),
                   ),
                 ),
               ),
@@ -97,7 +97,7 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                   'Pelukis',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Color.fromRGBO(12, 26, 48, 1),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -108,7 +108,7 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                   widget.product.pelukis,
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Color.fromRGBO(54, 105, 201, 1),
                   ),
                 ),
               ),
@@ -118,7 +118,7 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                   'Ukuran',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Color.fromRGBO(12, 26, 48, 1),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -129,10 +129,31 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                   widget.product.ukuran ?? "Tidak diketahui",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Color.fromRGBO(54, 105, 201, 1),
                   ),
                 ),
               ),
+              // Padding(
+              //   padding: EdgeInsets.all(1.sh),
+              //   child: Text(
+              //     'Tema',
+              //     style: TextStyle(
+              //       fontSize: 16,
+              //       color: Color.fromRGBO(12, 26, 48, 1),
+              //       fontWeight: FontWeight.w500,
+              //     ),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.all(1.sh),
+              //   child: Text(
+              //     widget.product.tema ?? "Tidak diketahui",
+              //     style: TextStyle(
+              //       fontSize: 16,
+              //       color: Color.fromRGBO(54, 105, 201, 1),
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 height: 2.sh,
               ),
@@ -148,7 +169,7 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 _openWhatsApp();
               },
               child: Text("Hubungi Admin"),
@@ -170,7 +191,6 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
 }
 
 void _openWhatsApp() async {
-  String phoneNumber = '082380599958';
-  var url = 'htpps://wa.me/$phoneNumber?text=Hello....';
-  await launchUrl(Uri.parse(url));
+  var url = 'https://wa.me/82380599958';
+  await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
 }

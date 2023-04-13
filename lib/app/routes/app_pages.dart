@@ -1,14 +1,14 @@
 import 'package:galeri_lukisan/app/modules/home/views/dashboard_fragment.dart';
+import 'package:galeri_lukisan/app/modules/login/views/login_view.dart';
 import 'package:get/get.dart';
 
 import 'package:galeri_lukisan/app/modules/home/bindings/home_binding.dart';
 import 'package:galeri_lukisan/app/modules/home/views/home_view.dart';
 import 'package:galeri_lukisan/app/modules/login/bindings/login_binding.dart';
-import 'package:galeri_lukisan/app/modules/login/views/signin.dart';
 import 'package:galeri_lukisan/app/modules/order/bindings/order_binding.dart';
 import 'package:galeri_lukisan/app/modules/order/views/order_view.dart';
 import 'package:galeri_lukisan/app/modules/register/bindings/register_binding.dart';
-import 'package:galeri_lukisan/app/modules/register/views/signup_view.dart';
+import 'package:galeri_lukisan/app/modules/register/views/register_view.dart';
 
 import '../modules/home/bindings/dashboard_binding.dart';
 
@@ -39,12 +39,12 @@ class AppPages {
     // ),
     GetPage(
       name: _Paths.REGISTER,
-      page: () => SignUpScreen(),
+      page: () => RegisterView(),
       binding: RegisterBinding(),
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () => SignInScreen(),
+      page: () => LoginView(),
       binding: LoginBinding(),
     ),
     GetPage(

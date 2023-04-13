@@ -1,34 +1,31 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:galeri_lukisan/app/modules/login/views/signin.dart';
+import 'package:galeri_lukisan/app/modules/login/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:galeri_lukisan/helper/string_extension.dart';
 
 import '../../../../helper/controllers.dart';
-import '../../../../helper/input_outline_button.dart';
 import '../../../../helper/input_text_button.dart';
 import '../../../../helper/input_text_field.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class RegisterView extends StatefulWidget {
+  const RegisterView({Key? key}) : super(key: key);
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<RegisterView> createState() => _RegisterView();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _RegisterView extends State<RegisterView> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmController = TextEditingController();
 
   @override
   void dispose() {
     fullNameController.dispose();
     emailController.dispose();
     passwordController.dispose();
-    confirmController.dispose();
     super.dispose();
   }
 
@@ -51,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         fontSize: 32,
                         fontWeight: FontWeight.bold)),
                 const Text(
-                  "Sign up to started!",
+                  "Register to started!",
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 22,
@@ -107,23 +104,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                 ),
                 const SizedBox(height: 10),
-                InputTextField(
-                  title: 'Confirm Password',
-                  obsecureText: true,
-                  textEditingController: confirmController,
-                  validation: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return "This field can't be empty";
-                    } else if (passwordController.text != value) {
-                      return "Confirm password not match";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 10),
                 const Spacer(),
                 InputTextButton(
-                  title: "Sign Up",
+                  title: "Register",
                   onClick: () {
                     if (_formKey.currentState!.validate()) {
                       authController.signUp(
@@ -132,13 +115,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         password: passwordController.text,
                       );
                     }
-                  },
-                ),
-                const SizedBox(height: 10),
-                InputOutlineButton(
-                  title: "Back",
-                  onClick: () {
-                    Navigator.of(context).pop();
                   },
                 ),
                 const Spacer(
@@ -153,11 +129,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignInScreen()));
+                                builder: (context) => const LoginView()));
                       },
                       child: const Text(
-                        "Sign In",
-                        style: TextStyle(color: Colors.blue),
+                        "Log In",
+                        style:
+                            TextStyle(color: Color.fromRGBO(54, 105, 201, 1)),
                       ),
                     )
                   ],

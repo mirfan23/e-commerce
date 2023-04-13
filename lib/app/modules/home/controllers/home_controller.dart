@@ -36,6 +36,7 @@ class HomeController extends GetxController {
       var result = await ProductProvider().getbyName(keyword: keyword);
       if (result != null) {
         productList.assignAll(productListFromJson(result.body));
+        print(result.body);
       }
     } finally {
       isProductLoading(false);

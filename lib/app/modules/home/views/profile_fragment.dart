@@ -25,7 +25,7 @@ class ProfileFragment extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 1.sw,
+                width: 3.sw,
               ),
               Column(
                 children: [

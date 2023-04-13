@@ -17,7 +17,7 @@ class HomeView extends GetView<HomeController> {
         title: Text(
           'Galeri Lukisan',
           style: TextStyle(
-            color: Colors.black.withOpacity(0.8),
+            color: Color.fromRGBO(21, 46, 86, 1),
           ),
         ),
         centerTitle: true,

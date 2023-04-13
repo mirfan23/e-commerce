@@ -10,9 +10,9 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../data/models/product.dart';
 
-class ProductCard extends StatelessWidget {
+class OrderCard extends StatelessWidget {
   final Product product;
-  const ProductCard({
+  const OrderCard({
     Key? key,
     required this.product,
   }) : super(key: key);
@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         child: Padding(
           padding: EdgeInsets.all(2.sh),
-          child: Column(
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
@@ -74,7 +74,6 @@ class ProductCard extends StatelessWidget {
                     Text(
                       product.name,
                       maxLines: 2,
-                      // overflow: TextOverflow.,
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,

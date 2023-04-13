@@ -51,7 +51,7 @@ class DashboardFragment extends StatelessWidget {
           ),
           bottomNavigationBar: Obx(
             () => BottomNavigationBar(
-              backgroundColor: Colors.black,
+              backgroundColor: Color.fromRGBO(54, 105, 201, 0.9),
               currentIndex: _indexNumber.value,
               onTap: (value) {
                 _indexNumber.value = value;

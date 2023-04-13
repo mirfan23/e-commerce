@@ -20,88 +20,69 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DetailLukisanView(product: product)));
-      },
-      child: Material(
-        elevation: 5,
-        shadowColor: Colors.grey.shade800,
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        child: Padding(
-          padding: EdgeInsets.all(2.sh),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DetailLukisanView(product: product)));
+        },
+        child: Material(
+          elevation: 5,
+          shadowColor: Colors.grey.shade800,
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          child: Padding(
+            padding: EdgeInsets.all(2.sh),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Flexible(
-                flex: 2,
-                child: Center(
-                  child: Hero(
-                    tag: product.images.first,
-                    child: CachedNetworkImage(
-                      imageUrl: baseUrl + product.images.first,
-                      placeholder: (context, url) => Shimmer.fromColors(
-                        highlightColor: Colors.white,
-                        baseColor: Colors.grey.shade300,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: 2.sh,
-                          ),
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      errorWidget: (context, url, error) => Center(
-                          child: Icon(
-                        Icons.error_outline,
-                        color: Colors.grey,
-                      )),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+                  flex: 2,
+                  child: Center(
+                    child: Hero(
+                        tag: product.images.first,
+                        child: CachedNetworkImage(
+                            imageUrl: baseUrl + product.images.first,
+                            placeholder: (context, url) => Shimmer.fromColors(
+                                  highlightColor: Colors.white,
+                                  baseColor: Colors.grey.shade300,
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(
+                                      horizontal: 2.sh,
+                                    ),
+                                    color: Colors.grey.shade300,
+                                  ),
+                                ),
+                            errorWidget: (context, url, error) => Center(
+                                child: Icon(Icons.error_outline,
+                                    color: Colors.grey)))),
+                  )),
+              SizedBox(height: 10),
               Expanded(
-                flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.name,
-                      maxLines: 2,
-                      // overflow: TextOverflow.,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      NumberFormat.currency(
-                        locale: 'id',
-                        decimalDigits: 0,
-                        symbol: 'Rp ',
-                      ).format(product.price),
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey.shade800,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                  flex: 1,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(product.name,
+                            maxLines: 2,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black)),
+                        SizedBox(height: 5),
+                        Text(
+                            NumberFormat.currency(
+                              locale: 'id',
+                              decimalDigits: 0,
+                              symbol: 'Rp ',
+                            ).format(product.price),
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromRGBO(254, 58, 48, 1)))
+                      ]))
+            ]),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

@@ -23,20 +23,19 @@ class SearchBar extends StatelessWidget {
       ),
       child: TextField(
         onSubmitted: (val) {
+          // controller.getProductByPelukis(keyword: val);
           controller.getProductByName(keyword: val);
-          controller.getProductByPelukis(keyword: val);
         },
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
+          fillColor: Color.fromRGBO(100, 100, 100, 1),
           contentPadding: EdgeInsets.all(1.5.sh),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50),
-            borderSide: BorderSide(
-              width: 1.sh,
-            ),
+            borderRadius: BorderRadius.circular(10),
           ),
-          hintText: "Search Product Name",
+          hintText: "Search Product",
+          hintStyle: TextStyle(color: Color.fromRGBO(196, 197, 196, 1)),
           hintTextDirection: TextDirection.ltr,
           suffixIcon: Icon(
             Icons.search,
