@@ -63,7 +63,7 @@ class ProfileFragment extends StatelessWidget {
           onClick();
         },
         child: Container(
-          height: 10.sh,
+          height: 7.sh,
           padding: EdgeInsets.symmetric(horizontal: 2.sh),
           decoration: BoxDecoration(
               color: Colors.white,

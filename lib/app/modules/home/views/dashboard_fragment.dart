@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_final_fields, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:galeri_lukisan/app/modules/home/controllers/dashboard_controller.dart';
 import 'package:galeri_lukisan/app/modules/home/controllers/home_controller.dart';
 import 'package:galeri_lukisan/app/modules/home/views/home_view.dart';
@@ -14,7 +13,7 @@ class DashboardFragment extends StatelessWidget {
 
   List<Widget> _fragmentScreen = [
     HomeView(),
-    OrderView(),
+    // OrderView(),
     ProfileFragment(),
   ];
 
@@ -24,11 +23,11 @@ class DashboardFragment extends StatelessWidget {
       "non_active_icon": Icons.home_outlined,
       "label": "Home",
     },
-    {
-      "active_icon": FontAwesomeIcons.boxOpen,
-      "non_active_icon": FontAwesomeIcons.box,
-      "label": "Order",
-    },
+    // {
+    //   "active_icon": FontAwesomeIcons.boxOpen,
+    //   "non_active_icon": FontAwesomeIcons.box,
+    //   "label": "Order",
+    // },
     {
       "active_icon": Icons.person,
       "non_active_icon": Icons.person_outline,
@@ -61,7 +60,7 @@ class DashboardFragment extends StatelessWidget {
               selectedItemColor: Colors.white,
               unselectedItemColor: Colors.white24,
               items: List.generate(
-                3,
+                2,
                 (index) {
                   var navButtonProperty = _navigationButtonsProperties[index];
                   return BottomNavigationBarItem(

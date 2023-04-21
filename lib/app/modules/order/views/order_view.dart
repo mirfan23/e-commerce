@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:galeri_lukisan/app/modules/home/views/dashboard_fragment.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 
 import 'package:get/get.dart';
@@ -18,17 +17,6 @@ class OrderView extends GetView<OrderController> {
             color: Colors.black,
           ),
         ),
-        // leading: IconButton(
-        //   splashRadius: 3.sh,
-        //   icon: Icon(
-        //     Icons.arrow_back_ios_new_rounded,
-        //     size: 3.sh,
-        //     color: Colors.black,
-        //   ),
-        //   onPressed: () {
-        //     Get.to(() => DashboardFragment());
-        //   },
-        // ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

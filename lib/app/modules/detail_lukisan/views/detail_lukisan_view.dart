@@ -177,12 +177,12 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
             SizedBox(
               width: 2.sh,
             ),
-            ElevatedButton(
-              onPressed: () {
-                Get.offAllNamed(AppPages.DASHBOARD, arguments: 3);
-              },
-              child: Text("Beli"),
-            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Get.offAllNamed(AppPages.DASHBOARD, arguments: 3);
+            //   },
+            //   child: Text("Beli"),
+            // ),
           ],
         ),
       ),
