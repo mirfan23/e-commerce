@@ -10,7 +10,7 @@ class Product {
   final String description;
   final String pelukis;
   String? ukuran;
-  // String? tema;
+  String? tema;
   final List<String> images;
 
   Product({
@@ -20,7 +20,7 @@ class Product {
     required this.description,
     required this.pelukis,
     this.ukuran,
-    // this.tema,
+    this.tema,
     required this.images,
   });
 
@@ -31,7 +31,7 @@ class Product {
         description: data['attributes']['description'],
         pelukis: data['attributes']['pelukis'],
         ukuran: data['attributes']['ukuran'],
-        // tema: data['attributes']['Tema'],
+        tema: data['attributes']['Tema'],
         images: List<String>.from(data['attributes']['images']['data']
             .map((image) => image['attributes']['url'])),
       );

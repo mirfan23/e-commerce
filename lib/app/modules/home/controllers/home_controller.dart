@@ -30,24 +30,10 @@ class HomeController extends GetxController {
     }
   }
 
-  void getProductByName({required String keyword}) async {
+  void getProductFilter({required String keyword}) async {
     try {
       isProductLoading(true);
-      var result = await ProductProvider().getbyName(keyword: keyword);
-      if (result != null) {
-        productList.assignAll(productListFromJson(result.body));
-        print(result.body);
-      }
-    } finally {
-      isProductLoading(false);
-      print(productList.length);
-    }
-  }
-
-  void getProductByPelukis({required String keyword}) async {
-    try {
-      isProductLoading(true);
-      var result = await ProductProvider().getbyPelukis(keyword: keyword);
+      var result = await ProductProvider().getbyFilter(keyword: keyword);
       if (result != null) {
         productList.assignAll(productListFromJson(result.body));
       }

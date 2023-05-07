@@ -14,19 +14,10 @@ class ProductProvider {
     return response;
   }
 
-  Future<dynamic> getbyName({required String keyword}) async {
+  Future<dynamic> getbyFilter({required String keyword}) async {
     var response = await client.get(
       Uri.parse(
-        '$apiUrl?populate=images&filters[name][\$contains]=$keyword',
-      ),
-    );
-    return response;
-  }
-
-  Future<dynamic> getbyPelukis({required String keyword}) async {
-    var response = await client.get(
-      Uri.parse(
-        '$apiUrl?populate=images&filters[pelukis][\$contains]=$keyword',
+        '$apiUrl?populate=images&[filters][\$or][0][pelukis][\$contains]=$keyword&[filters][\$or][1][name][\$contains]=$keyword&[filters][\$or][2][tema][\$contains]=$keyword',
       ),
     );
     return response;

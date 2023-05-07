@@ -5,7 +5,6 @@ import 'package:galeri_lukisan/app/modules/home/controllers/dashboard_controller
 import 'package:galeri_lukisan/app/modules/home/controllers/home_controller.dart';
 import 'package:galeri_lukisan/app/modules/home/views/home_view.dart';
 import 'package:galeri_lukisan/app/modules/home/views/profile_fragment.dart';
-import 'package:galeri_lukisan/app/modules/order/views/order_view.dart';
 import 'package:get/get.dart';
 
 class DashboardFragment extends StatelessWidget {

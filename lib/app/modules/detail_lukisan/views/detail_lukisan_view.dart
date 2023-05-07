@@ -4,12 +4,10 @@ import 'package:galeri_lukisan/app/modules/detail_lukisan/widget/product_carouse
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/models/product.dart';
-import '../../../routes/app_pages.dart';
 
 class DetailLukisanView extends StatefulWidget {
   final Product product;
@@ -133,27 +131,27 @@ class _DetailLukisanViewState extends State<DetailLukisanView> {
                   ),
                 ),
               ),
-              // Padding(
-              //   padding: EdgeInsets.all(1.sh),
-              //   child: Text(
-              //     'Tema',
-              //     style: TextStyle(
-              //       fontSize: 16,
-              //       color: Color.fromRGBO(12, 26, 48, 1),
-              //       fontWeight: FontWeight.w500,
-              //     ),
-              //   ),
-              // ),
-              // Padding(
-              //   padding: EdgeInsets.all(1.sh),
-              //   child: Text(
-              //     widget.product.tema ?? "Tidak diketahui",
-              //     style: TextStyle(
-              //       fontSize: 16,
-              //       color: Color.fromRGBO(54, 105, 201, 1),
-              //     ),
-              //   ),
-              // ),
+              Padding(
+                padding: EdgeInsets.all(1.sh),
+                child: Text(
+                  'Tema',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color.fromRGBO(12, 26, 48, 1),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(1.sh),
+                child: Text(
+                  widget.product.tema ?? "Tidak diketahui",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color.fromRGBO(54, 105, 201, 1),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 2.sh,
               ),

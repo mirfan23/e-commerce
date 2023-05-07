@@ -23,8 +23,7 @@ class SearchBar extends StatelessWidget {
       ),
       child: TextField(
         onSubmitted: (val) {
-          // controller.getProductByPelukis(keyword: val);
-          controller.getProductByName(keyword: val);
+          controller.getProductFilter(keyword: val);
         },
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
