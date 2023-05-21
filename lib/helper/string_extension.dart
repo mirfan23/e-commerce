@@ -39,9 +39,4 @@ extension ExtString on String {
     final passwordRegExp = RegExp(r'[0-9]');
     return passwordRegExp.hasMatch(this);
   }
-
-  bool get isValidPhone {
-    final phoneRegExp = RegExp(r"^\+?0[0-9]{10}$");
-    return phoneRegExp.hasMatch(this);
-  }
 }

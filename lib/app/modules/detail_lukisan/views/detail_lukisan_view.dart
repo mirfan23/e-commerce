@@ -3,11 +3,13 @@
 import 'package:galeri_lukisan/app/modules/detail_lukisan/widget/product_carousel.dart';
 import 'package:galeri_lukisan/helper/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/models/product.dart';
+import '../../../routes/app_pages.dart';
 
 class DetailLukisanView extends StatefulWidget {
   final Product product;

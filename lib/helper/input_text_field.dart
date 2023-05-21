@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:galeri_lukisan/helper/helpers.dart';
 
 class InputTextField extends StatefulWidget {
   final String? Function(String?)? validation;
@@ -74,8 +75,11 @@ class _InputTextFieldState extends State<InputTextField> {
         },
         onEditingComplete: widget.onEditComplete,
         obscureText: _isVisible,
-        style:
-            const TextStyle(fontSize: 12.0, height: 2.0, color: Colors.black),
+        style: TextStyle(
+          fontSize: 2.sh,
+          height: 0.2.sh,
+          color: Colors.black,
+        ),
         textAlign: widget.textAlign,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         decoration: InputDecoration(
@@ -85,14 +89,14 @@ class _InputTextFieldState extends State<InputTextField> {
             suffixIcon: widget.obsecureText
                 ? GestureDetector(
                     child: _isVisible
-                        ? const Icon(
+                        ? Icon(
                             Icons.visibility_off,
-                            size: 18,
+                            size: 2.sh,
                             color: Colors.grey,
                           )
-                        : const Icon(
+                        : Icon(
                             Icons.visibility,
-                            size: 18,
+                            size: 2.sh,
                             color: Colors.grey,
                           ),
                     onTap: () => setState(() {
@@ -101,24 +105,23 @@ class _InputTextFieldState extends State<InputTextField> {
                   )
                 : null,
             contentPadding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            hintStyle:
-                const TextStyle(fontWeight: FontWeight.w300, fontSize: 11),
-            border: const OutlineInputBorder(
+                EdgeInsets.symmetric(horizontal: 1.5.sh, vertical: 0.5.sh),
+            hintStyle: TextStyle(fontWeight: FontWeight.w300, fontSize: 2.sh),
+            border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              borderSide: BorderSide(width: 1, color: Colors.black26),
+              borderSide: BorderSide(width: 0.1.sh, color: Colors.black26),
             ),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              borderSide: BorderSide(width: 1, color: Colors.black26),
+              borderSide: BorderSide(width: 0.1.sh, color: Colors.black26),
             ),
-            errorBorder: const OutlineInputBorder(
+            errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              borderSide: BorderSide(width: 1, color: Colors.black26),
+              borderSide: BorderSide(width: 0.1.sh, color: Colors.black26),
             ),
-            focusedBorder: const OutlineInputBorder(
+            focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              borderSide: BorderSide(width: 1, color: Colors.black26),
+              borderSide: BorderSide(width: 0.1.sh, color: Colors.black26),
             )),
       ),
     );

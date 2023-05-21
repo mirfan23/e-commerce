@@ -3,8 +3,8 @@
 import 'package:galeri_lukisan/app/modules/login/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:galeri_lukisan/helper/string_extension.dart';
-
-import '../../../../helper/controllers.dart';
+import 'package:get/get.dart';
+import 'package:galeri_lukisan/app/modules/register/controllers/auth_controller.dart';
 import '../../../../helper/input_text_button.dart';
 import '../../../../helper/input_text_field.dart';
 
@@ -20,6 +20,7 @@ class _RegisterView extends State<RegisterView> {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final AuthController _authController = Get.put(AuthController.instance);
 
   @override
   void dispose() {
@@ -59,6 +60,7 @@ class _RegisterView extends State<RegisterView> {
                   flex: 3,
                 ),
                 InputTextField(
+                  // height: 5.sh,
                   title: 'Full Name',
                   textEditingController: fullNameController,
                   validation: (String? value) {
@@ -109,7 +111,7 @@ class _RegisterView extends State<RegisterView> {
                   title: "Register",
                   onClick: () {
                     if (_formKey.currentState!.validate()) {
-                      authController.signUp(
+                      _authController.signUp(
                         fullName: fullNameController.text,
                         email: emailController.text,
                         password: passwordController.text,
