@@ -51,9 +51,10 @@ class DashboardFragment extends StatelessWidget {
             () => BottomNavigationBar(
               backgroundColor: Color.fromRGBO(54, 105, 201, 0.9),
               currentIndex: _indexNumber.value,
-              onTap: (value) {
-                _indexNumber.value = value;
-              },
+              onTap: _onBottomNavigationTapped,
+              // onTap: (value) {
+              //   _indexNumber.value = value;
+              // },
               showSelectedLabels: true,
               showUnselectedLabels: true,
               selectedItemColor: Colors.white,
@@ -73,5 +74,13 @@ class DashboardFragment extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _onBottomNavigationTapped(int index) {
+    if (index == 0) {
+      HomeController homeController = Get.find<HomeController>();
+      homeController.refreshHomeView();
+    }
+    _indexNumber.value = index;
   }
 }

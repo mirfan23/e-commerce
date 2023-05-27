@@ -42,4 +42,10 @@ class HomeController extends GetxController {
       print(productList.length);
     }
   }
+
+  void refreshHomeView() {
+    // Masukkan logika untuk memperbarui data di HomeView di sini
+    // Contoh:
+    getproducts(); // Misalnya, memanggil method getProductList untuk mendapatkan daftar produk terbaru
+  }
 }

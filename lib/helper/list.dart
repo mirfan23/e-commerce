@@ -1,6 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '../app/modules/home/widget/category_chip.dart';
 
 class MyList {
   static List film = [
@@ -30,4 +32,23 @@ class MyList {
     "Star Wars : The Last Jedi",
     "Monalisa"
   ];
+
+  // static List<CategoryChip> categories = [
+  //   CategoryChip(
+  //       categoryName: 'Category 1',
+  //       categoryIcon: Icons.category,
+  //       categoryColor: Colors.blue),
+  //   CategoryChip(
+  //       categoryName: 'Category 2',
+  //       categoryIcon: Icons.category,
+  //       categoryColor: Colors.green),
+  //   CategoryChip(
+  //       categoryName: 'Category 3',
+  //       categoryIcon: Icons.category,
+  //       categoryColor: Colors.orange),
+  //   CategoryChip(
+  //       categoryName: 'Category 4',
+  //       categoryIcon: Icons.category,
+  //       categoryColor: Colors.red),
+  // ];
 }
