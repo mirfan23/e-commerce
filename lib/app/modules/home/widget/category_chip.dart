@@ -22,16 +22,19 @@ class CategoryChip extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
-          color: Colors.grey.withOpacity(0.7),
-          width: 10.sh,
-          padding: EdgeInsets.all(8),
+          color: Color.fromRGBO(54, 105, 201, 0.9),
+          width: 15.sh,
+          padding: EdgeInsets.all(1.5.sh),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 categoryName,
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 10,
+                ),
                 textAlign: TextAlign.center,
               ),
             ],

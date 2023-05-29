@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_final_fields, must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:galeri_lukisan/app/modules/home/controllers/dashboard_controller.dart';
 import 'package:galeri_lukisan/app/modules/home/controllers/home_controller.dart';
 import 'package:galeri_lukisan/app/modules/home/views/home_view.dart';
 import 'package:galeri_lukisan/app/modules/home/views/profile_fragment.dart';
 import 'package:get/get.dart';
+
+import '../../order/views/order_view.dart';
 
 class DashboardFragment extends StatelessWidget {
   final controller = Get.put(HomeController());

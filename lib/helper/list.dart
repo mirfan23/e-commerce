@@ -33,6 +33,16 @@ class MyList {
     "Monalisa"
   ];
 
+  static List<CategoryChip> Kategori = [
+    CategoryChip(categoryName: "Manusia"),
+    CategoryChip(categoryName: "Perang"),
+    CategoryChip(categoryName: "Bunga"),
+    CategoryChip(categoryName: "Langit"),
+    CategoryChip(categoryName: "Pemandangan"),
+    CategoryChip(categoryName: "Laut"),
+    CategoryChip(categoryName: "Pohon"),
+  ];
+
   // static List<CategoryChip> categories = [
   //   CategoryChip(
   //       categoryName: 'Category 1',
